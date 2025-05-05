@@ -10,40 +10,14 @@ import {
 import ListItemLink from "@/components/atoms/ListItemLink";
 import Link from "next/link";
 import Image from "next/image";
+import { catalogueComponents, extraInfoComponents } from "@/lib/links";
+import { cn } from "@/lib/utils";
 
-const NavigationBarLinks = () => {
-  const components: { title: string; href: string; description: string }[] = [
-    {
-      title: "Футболки",
-      href: "/services/print/t-shirt",
-      description: "Ваша собственная фотография или логоит на футболке.",
-    },
-    {
-      title: "Худи",
-      href: "/services/print/hoodie",
-      description: "Печать DTG-методом на худи с возможнстью выбора цвета.",
-    },
-    {
-      title: "Свитшоты",
-      href: "/services/print/sweatshot",
-      description:
-        "Выберите цвте и форму свитшота, закажите печать своего логотипа.",
-    },
-    {
-      title: "Кружки",
-      href: "/services/print/cup",
-      description:
-        "Выбор формы и цвета внутренней части кружки с печатью вашей фотографии.",
-    },
-    {
-      title: "Рюкзаки",
-      href: "/services/print/backpack",
-      description: "Печать DTF-методом на рюкзаках и сумках.",
-    },
-  ];
-
+const NavigationBarLinks: React.FC<IComponentClassNameAsProp> = ({
+  className,
+}) => {
   return (
-    <NavigationMenu>
+    <NavigationMenu className={cn("", className)}>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Главная</NavigationMenuTrigger>
@@ -70,13 +44,13 @@ const NavigationBarLinks = () => {
                   </Link>
                 </NavigationMenuLink>
               </li>
-              <ListItemLink href="/docs" title="Услуги">
+              <ListItemLink href="/services" title="Услуги">
                 Информация об изделиях и предоставляемых услугах.
               </ListItemLink>
-              <ListItemLink href="/docs/installation" title="Кастомизация">
+              <ListItemLink href="/services/instruction" title="Кастомизация">
                 Загрузи своё фото или выбери из предложенных.
               </ListItemLink>
-              <ListItemLink href="/docs/primitives/typography" title="Цены">
+              <ListItemLink href="/services/prices" title="Цены">
                 Цены на предоставляемые компанией услуги.
               </ListItemLink>
             </ul>
@@ -85,8 +59,8 @@ const NavigationBarLinks = () => {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Каталог</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid gap-3 p-4 sm:w-[350px] md:w-[400px] lg:w-[550px] md:grid-cols-2  ">
-              {components.map((component) => (
+            <ul className="grid gap-3 p-4 sm:w-[350px] md:w-[400px] lg:w-[550px] md:grid-cols-2">
+              {catalogueComponents.map((component) => (
                 <ListItemLink
                   key={component.title}
                   title={component.title}
@@ -98,13 +72,29 @@ const NavigationBarLinks = () => {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/about" passHref>
-            <NavigationMenuLink className="whitespace-nowrap">
-              О нас
-            </NavigationMenuLink>
-          </Link>
+        <NavigationMenuItem className="lg:hidden">
+          <NavigationMenuTrigger>Дополнительно</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid gap-3 p-4 sm:w-[350px] md:w-[400px] lg:w-[550px] md:grid-cols-2">
+              {extraInfoComponents.map((el) => (
+                <ListItemLink
+                  key={`lil${el.href}`}
+                  href={el.href}
+                  title={el.title}
+                >
+                  {el.description}
+                </ListItemLink>
+              ))}
+            </ul>
+          </NavigationMenuContent>
         </NavigationMenuItem>
+        {extraInfoComponents.map((el) => (
+          <NavigationMenuItem className="hidden lg:block" key={`nmi${el.href}`}>
+            <NavigationMenuLink href={el.href} className="whitespace-nowrap">
+              {el.title}
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        ))}
       </NavigationMenuList>
     </NavigationMenu>
   );
