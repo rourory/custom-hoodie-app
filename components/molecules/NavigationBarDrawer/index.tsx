@@ -29,7 +29,12 @@ const NavigationBarDrawer: React.FC<React.PropsWithChildren> = ({
           <ul className="pb-4">
             {catalogueComponents.map((el) => (
               <li key={el.title} className="mt-4">
-                <ListItemLink href={el.href} title={el.title}>
+                <ListItemLink
+                  href={el.href}
+                  title={el.title}
+                  className="block hover:scale-100"
+                  icon={el.icon}
+                >
                   {el.description}
                 </ListItemLink>
               </li>
@@ -41,7 +46,8 @@ const NavigationBarDrawer: React.FC<React.PropsWithChildren> = ({
                   key={el.title}
                   href={el.href}
                   title={el.title}
-                  className="mt-10"
+                  className="block hover:scale-100"
+                  icon={el.icon}
                 >
                   {el.description}
                 </ListItemLink>

@@ -44,13 +44,25 @@ const NavigationBarLinks: React.FC<IComponentClassNameAsProp> = ({
                   </Link>
                 </NavigationMenuLink>
               </li>
-              <ListItemLink href="/services" title="Услуги">
+              <ListItemLink
+                href="/services"
+                title="Услуги"
+                icon="/icons/bubbles.svg"
+              >
                 Информация об изделиях и предоставляемых услугах.
               </ListItemLink>
-              <ListItemLink href="/services/instruction" title="Кастомизация">
+              <ListItemLink
+                href="/services/instruction"
+                title="Кастомизация"
+                icon="/icons/wrench.svg"
+              >
                 Загрузи своё фото или выбери из предложенных.
               </ListItemLink>
-              <ListItemLink href="/services/prices" title="Цены">
+              <ListItemLink
+                href="/services/prices"
+                title="Цены"
+                icon="/icons/gem.svg"
+              >
                 Цены на предоставляемые компанией услуги.
               </ListItemLink>
             </ul>
@@ -60,13 +72,14 @@ const NavigationBarLinks: React.FC<IComponentClassNameAsProp> = ({
           <NavigationMenuTrigger>Каталог</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 sm:w-[350px] md:w-[400px] lg:w-[550px] md:grid-cols-2">
-              {catalogueComponents.map((component) => (
+              {catalogueComponents.map((el) => (
                 <ListItemLink
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
+                  key={el.title}
+                  title={el.title}
+                  href={el.href}
+                  icon={el.icon}
                 >
-                  {component.description}
+                  {el.description}
                 </ListItemLink>
               ))}
             </ul>
@@ -81,6 +94,7 @@ const NavigationBarLinks: React.FC<IComponentClassNameAsProp> = ({
                   key={`lil${el.href}`}
                   href={el.href}
                   title={el.title}
+                  icon={el.icon}
                 >
                   {el.description}
                 </ListItemLink>

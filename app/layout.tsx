@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Comfortaa } from "next/font/google";
-import "../globals.css";
+import "./globals.css";
 import Header from "@/components/organisms/Header";
+import NextTopLoader from "nextjs-toploader";
 
 const comfortaaFont = Comfortaa({
   subsets: ["cyrillic", "latin"],
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en" className="min-w-[375px]">
       <body className={`${comfortaaFont.className} antialiased`}>
         <Header />
+        <NextTopLoader showSpinner={false} color="#9f0006" height={2} />
         {children}
       </body>
     </html>
