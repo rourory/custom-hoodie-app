@@ -84,13 +84,13 @@ const Customizer: React.FC<PropsWithChildren<ICustomizer>> = ({
                   <TabsTrigger value="rightsleeve">Правый рукав</TabsTrigger>
                 </TabsList>
                 <TabsContent value="chest" className="w-full">
-                  <CanvasEditor />
+                  <CanvasEditor editorContext="sweatshot.chest" />
                 </TabsContent>
                 <TabsContent value="back" className="w-full">
-                  Change your password here.
+                  <CanvasEditor editorContext="sweatshot.back" />
                 </TabsContent>
                 <TabsContent value="rightsleeve" className="w-full">
-                  Change your password here.
+                  <CanvasEditor editorContext="sweatshot.rightSleeve" />
                 </TabsContent>
               </Tabs>
             </div>
