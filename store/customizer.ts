@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export interface CustomizerImagesStoreState {
+export interface CanvasCustomizerStoreState {
   selectedImageId: number | null;
   setSelectedImageId: (id: number | null) => void;
   images: CanvasImage[];
@@ -11,7 +11,7 @@ export interface CustomizerImagesStoreState {
   updateImageRotation: (id: number, rotation: number) => void;
 }
 
-export const useCustomizerImagesStore = create<CustomizerImagesStoreState>()(
+export const useCanvasCustomizerStore = create<CanvasCustomizerStoreState>()(
   (set, getState) => ({
     images: [],
     selectedImageId: null,
@@ -81,3 +81,17 @@ export const useCustomizerImagesStore = create<CustomizerImagesStoreState>()(
     },
   })
 );
+
+export interface ModelSettingsStore {
+  color: string;
+  setColor: (color: string) => void;
+  image?: HTMLImageElement;
+  setImage: (image?: HTMLImageElement) => void;
+}
+
+export const useModelSettingsStore = create<ModelSettingsStore>()((set) => ({
+  color: "white",
+  setColor: (color) => set({ color }),
+  image: undefined,
+  setImage: (image) => set({ image }),
+}));

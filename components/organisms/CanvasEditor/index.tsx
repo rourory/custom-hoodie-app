@@ -8,15 +8,21 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Transformer } from "konva/lib/shapes/Transformer";
 import {
-  Stage,
-  Layer,
+  Stage as KonvaStage,
+  Layer as KonvaLayer,
   Image as KonvaImage,
   Transformer as KonvaTransformer,
 } from "react-konva";
 import { Delete } from "lucide-react";
 import { useResponsiveCanvas, useTransformation } from "@/hooks/canvas";
 import { Image } from "konva/lib/shapes/Image";
-import { useCustomizerImagesStore } from "@/store/customizer";
+
+import { Layer } from "konva/lib/Layer";
+import {
+  useCanvasCustomizerStore,
+  useModelSettingsStore,
+} from "@/store/customizer";
+import { Stage } from "konva/lib/Stage";
 
 interface CanvasEditorProps {
   editorContext: string;
@@ -25,8 +31,13 @@ interface CanvasEditorProps {
 const CanvasEditor: React.FC<CanvasEditorProps> = ({ editorContext }) => {
   const canvasContainerRef = React.useRef<HTMLDivElement>(null);
 
-  const imageRefs = React.useRef<Record<number, Image>>({});
+  const layerRef = React.useRef<Layer>(null);
 
+  const stageRef = React.useRef<Stage>(null);
+
+  const { setImage } = useModelSettingsStore();
+
+  const imageRefs = React.useRef<Record<number, Image>>({});
   const transformerRef = React.useRef<Transformer>(null);
   const [cursor, setCursor] = React.useState("default");
 
@@ -43,18 +54,19 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({ editorContext }) => {
     updateImagePosition,
     updateImageScale,
     updateImageRotation,
-  } = useCustomizerImagesStore();
+  } = useCanvasCustomizerStore();
 
-  const { stageSize } = useResponsiveCanvas(16, 9, canvasContainerRef);
+  const { stageSize } = useResponsiveCanvas(1, 1, canvasContainerRef);
+
   return (
     <div className="w-full">
       <div
         ref={canvasContainerRef}
-        className="relative"
+        className="flex relative"
         style={{ height: stageSize.height }}
       >
-        <Stage
-          className="bg-[url('/transparent-background-grid.webp')] bg-cover overflow-clip rounded-md shadow-sm absolute top-0 left-0"
+        <KonvaStage
+          className="bg-[url('/models/swetshot_background.webp')] bg-cover overflow-clip rounded-md shadow-sm absolute top-0 left-0 "
           width={stageSize.width}
           height={stageSize.height}
           scaleX={stageSize.scale}
@@ -62,8 +74,9 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({ editorContext }) => {
           style={{
             cursor,
           }}
+          ref={stageRef}
         >
-          <Layer>
+          <KonvaLayer ref={layerRef}>
             {images.map(
               (img) =>
                 editorContext === img.context && (
@@ -78,6 +91,11 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({ editorContext }) => {
                         e.currentTarget.x(),
                         e.currentTarget.y()
                       );
+                      stageRef.current
+                        ?.toImage({ pixelRatio: 7, quality: 1 })
+                        .then((img) => {
+                          if (img) setImage(img as HTMLImageElement);
+                        });
                     }}
                     key={img.id}
                     image={img.image}
@@ -119,8 +137,8 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({ editorContext }) => {
               rotationSnapTolerance={5}
               preventDefault
             />
-          </Layer>
-        </Stage>
+          </KonvaLayer>
+        </KonvaStage>
         <Button
           className="absolute top-[calc(50%-20px)] right-2 rounded-[100%] p-0 h-[40px] scale-75 opacity-50 hover:opacity-100 hover:scale-100 cursor-pointer ease-in-out"
           style={{
@@ -141,7 +159,7 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({ editorContext }) => {
       </Label>
       <Input
         className="mt-2 cursor-pointer"
-        title="12"
+        title="Кликните для выбора вашего изображения"
         id="picture"
         type="file"
         accept="image/*"

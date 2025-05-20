@@ -53,7 +53,18 @@ export const useImages = (afterDeleteCallback: () => void) => {
       const id = Date.now();
       setImages((prev) => [
         ...prev,
-        { id, image: img, x: 50, y: 50, height: img.height, width: img.width },
+        {
+          id,
+          image: img,
+          x: 50,
+          y: 50,
+          height: img.height,
+          width: img.width,
+          context: "",
+          rotation: 0,
+          scaleX: 1,
+          scaleY: 1,
+        },
       ]);
     };
   };
@@ -67,8 +78,8 @@ export const useResponsiveCanvas: ResponsiveCanvasHook = (
   containerRef: React.RefObject<HTMLDivElement | null>
 ) => {
   const [stageSize, setStageSize] = useState<CanvasStageSize>({
-    width: 100 * aspectWidth,
-    height: 100 * aspectHeight,
+    width: 2000 * aspectWidth,
+    height: 2000 * aspectHeight,
     scale: 1,
   });
 

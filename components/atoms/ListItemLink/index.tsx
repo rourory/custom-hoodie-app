@@ -19,7 +19,15 @@ const ListItemLink: React.FC<React.PropsWithChildren<IListItemLink>> = ({
       href={href}
     >
       <div className="text-sm font-medium leading-none flex gap-1 items-center">
-        {icon && <Image src={icon} alt={title} width={18} height={18} />}{" "}
+        {icon && (
+          <Image
+            loading="eager"
+            src={icon}
+            alt={title}
+            width={18}
+            height={18}
+          />
+        )}
         {title}
       </div>
       <p className="mt-1.5 text-sm leading-tight text-muted-foreground">

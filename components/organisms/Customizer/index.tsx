@@ -17,7 +17,6 @@ const colors = [
   "green",
   "blue",
   "yellow",
-  "black",
   "white",
   "grey",
   "orange",
@@ -68,8 +67,8 @@ const Customizer: React.FC<PropsWithChildren<ICustomizer>> = ({
             minDistance={2}
             enablePan={false}
           />
-
-          <Environment preset="city" environmentIntensity={0.5} />
+          <rectAreaLight position={new Vector3(0, 0, 2)} intensity={0.3} />
+          <Environment preset="city" environmentIntensity={0.7} />
           <Center>{children}</Center>
         </Suspense>
       </Canvas>
@@ -79,18 +78,24 @@ const Customizer: React.FC<PropsWithChildren<ICustomizer>> = ({
             <div className="flex flex-col items-center w-full h-full bg-background ">
               <Tabs defaultValue="chest" className="w-full items-center">
                 <TabsList>
-                  <TabsTrigger value="chest">Грудь</TabsTrigger>
-                  <TabsTrigger value="back">Спинка</TabsTrigger>
-                  <TabsTrigger value="rightsleeve">Правый рукав</TabsTrigger>
+                  <TabsTrigger value="chest" className="cursor-pointer">
+                    Грудь
+                  </TabsTrigger>
+                  <TabsTrigger value="back" className="cursor-pointer">
+                    Спинка
+                  </TabsTrigger>
+                  <TabsTrigger value="rightsleeve" className="cursor-pointer">
+                    Правый рукав
+                  </TabsTrigger>
                 </TabsList>
                 <TabsContent value="chest" className="w-full">
                   <CanvasEditor editorContext="sweatshot.chest" />
                 </TabsContent>
                 <TabsContent value="back" className="w-full">
-                  <CanvasEditor editorContext="sweatshot.back" />
+                  {/* <CanvasEditor editorContext="sweatshot.back" /> */}
                 </TabsContent>
                 <TabsContent value="rightsleeve" className="w-full">
-                  <CanvasEditor editorContext="sweatshot.rightSleeve" />
+                  {/* <CanvasEditor editorContext="sweatshot.rightSleeve" /> */}
                 </TabsContent>
               </Tabs>
             </div>
