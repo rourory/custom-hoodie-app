@@ -1,37 +1,34 @@
 import React, { useCallback, useEffect } from "react";
 import { useState } from "react";
-import { Transformer } from "konva/lib/shapes/Transformer";
-import { Image } from "konva/lib/shapes/Image";
 
-export const useTransformation = (
-  transformerRef: React.RefObject<Transformer | null>,
-  imageRefs: React.RefObject<Record<number, Image>>
-) => {
-  const [transformerSelectedId, setTransformerSelectedId] = useState<
-    number | null
-  >(null);
+//   transformerRef: React.RefObject<Transformer | null>,
+//   imageRefs: React.RefObject<Record<number, Image>>
+// ) => {
+//   const [transformerSelectedId, setTransformerSelectedId] = useState<
+//     number | null
+//   >(null);
 
-  React.useEffect(() => {
-    if (transformerRef.current) {
-      const layer = transformerRef.current.getLayer();
-      if (transformerSelectedId !== null) {
-        transformerRef.current.nodes([
-          imageRefs.current[transformerSelectedId],
-        ]);
-      } else {
-        transformerRef.current.nodes([]);
-      }
-      if (layer) {
-        layer.batchDraw();
-      }
-    }
-  }, [transformerSelectedId]);
+//   React.useEffect(() => {
+//     if (transformerRef.current) {
+//       const layer = transformerRef.current.getLayer();
+//       if (transformerSelectedId !== null) {
+//         transformerRef.current.nodes([
+//           imageRefs.current[transformerSelectedId],
+//         ]);
+//       } else {
+//         transformerRef.current.nodes([]);
+//       }
+//       if (layer) {
+//         layer.batchDraw();
+//       }
+//     }
+//   }, [transformerSelectedId]);
 
-  return {
-    transformerSelectedId,
-    setTransformerSelectedId,
-  };
-};
+//   return {
+//     transformerSelectedId,
+//     setTransformerSelectedId,
+//   };
+// };
 
 export const useImages = (afterDeleteCallback: () => void) => {
   const [images, setImages] = useState<CanvasImage[]>([]);

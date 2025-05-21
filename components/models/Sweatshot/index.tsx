@@ -7,7 +7,7 @@ Command: npx gltfjsx@6.5.3 public/models/sweatshot.glb -o components/models/swea
 import React, { JSX, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import {  Mesh, MeshBasicMaterial, MeshStandardMaterial, Texture } from "three";
+import { Mesh, MeshBasicMaterial, MeshStandardMaterial, Texture } from "three";
 import { useFrame } from "@react-three/fiber";
 import { easing } from "maath";
 import { useModelSettingsStore } from "@/store/customizer";
@@ -77,31 +77,7 @@ export default function Sweatshot(props: JSX.IntrinsicElements["group"]) {
         position={[-0.078, 0, 0]}
       />
     </group>
-
-    // <group {...props} dispose={null} receiveShadow castShadow>
-    //   <mesh
-    //     geometry={nodes.sweatshot.geometry}
-    //     material={materials.ClothMaterial}
-    //   />
-    //   <mesh
-    //     geometry={nodes.chest.geometry}
-    //     material={materials.ClothMaterial}
-    //   ></mesh>
-    //   {image && (
-    //     <mesh geometry={nodes.chest.geometry} position={[0, 0, 0.001]}>
-    //       <meshBasicMaterial transparent map={texture}>
-    //         {/* <canvasTexture attach="map" image={texture} ref={textureRef} /> */}
-    //       </meshBasicMaterial>
-    //     </mesh>
-    //   )}
-    //   <mesh geometry={nodes.back.geometry} material={materials.ClothMaterial} />
-    //   <mesh
-    //     geometry={nodes.rightsleeve.geometry}
-    //     material={materials.ClothMaterial}
-    //   />
-    // </group>
   );
 }
-//https://github.com/pmndrs/react-three-fiber/discussions/2288?ysclid=mav3o7m330836380447
-//https://codesandbox.io/p/sandbox/canvas-animated-texture-10p7ws?file=%2Fsrc%2Findex.js%3A51%2C9-51%2C19
+
 useGLTF.preload("/models/sweatshot.glb");

@@ -1,3 +1,10 @@
+declare interface CanvasEditorProps {
+  uvUrl: string;
+  darkModeUvUrl: string;
+  aspectWidth: number;
+  aspectHeight: number;
+}
+
 declare interface CanvasImage {
   id: number;
   image: HTMLImageElement;
@@ -6,7 +13,6 @@ declare interface CanvasImage {
   scaleX: number;
   scaleY: number;
   rotation: number;
-  context: string;
 }
 
 declare interface CanvasStageSize {
@@ -23,3 +29,19 @@ declare type ResponsiveCanvasHook = (
   stageSize: CanvasStageSize;
   containerRef: React.RefObject<HTMLDivElement | null>;
 };
+
+declare interface CanvasImageProps {
+  img: CanvasImage;
+  isSelected: boolean;
+  onDragEnd: (e: KonvaEventObject<DragEvent>) => void;
+  onDragStart: () => void;
+  onTransformEnd: (e: KonvaEventObject<Event>) => void;
+  onMouseOver: () => void;
+  onMouseOut: () => void;
+  onMouseDown: () => void;
+}
+
+declare interface FloatingDeleteButtonProps extends IComponentClassNameAsProp {
+  visible: boolean;
+  onClick: () => void;
+}

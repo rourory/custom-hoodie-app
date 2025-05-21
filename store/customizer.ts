@@ -4,7 +4,7 @@ export interface CanvasCustomizerStoreState {
   selectedImageId: number | null;
   setSelectedImageId: (id: number | null) => void;
   images: CanvasImage[];
-  addImage: (file: File | undefined, editorContext: string) => void;
+  addImage: (file: File | undefined) => void;
   deleteSelectedImage: () => void;
   updateImagePosition: (id: number, x: number, y: number) => void;
   updateImageScale: (id: number, scaleX: number, scaleY: number) => void;
@@ -15,12 +15,8 @@ export const useCanvasCustomizerStore = create<CanvasCustomizerStoreState>()(
   (set, getState) => ({
     images: [],
     selectedImageId: null,
-    setSelectedImageId: (id: number | null) =>
-      set((state) => {
-        state.selectedImageId = id;
-        return state;
-      }),
-    addImage: (file, editorContext) => {
+    setSelectedImageId: (id: number | null) => set({ selectedImageId: id }),
+    addImage: (file) => {
       if (!file) return;
       const img = new window.Image();
       img.src = URL.createObjectURL(file);
@@ -37,7 +33,6 @@ export const useCanvasCustomizerStore = create<CanvasCustomizerStoreState>()(
               scaleX: 1,
               scaleY: 1,
               rotation: 0,
-              context: editorContext,
             },
           ],
         });
@@ -48,6 +43,7 @@ export const useCanvasCustomizerStore = create<CanvasCustomizerStoreState>()(
         images: getState().images.filter(
           (image) => image.id !== getState().selectedImageId
         ),
+        selectedImageId: null,
       }),
     updateImagePosition: (id, x, y) => {
       set({
