@@ -34,7 +34,6 @@ declare interface CanvasImageProps {
   img: CanvasImage;
   isSelected: boolean;
   onDragEnd: (e: KonvaEventObject<DragEvent>) => void;
-  onDragStart: () => void;
   onTransformEnd: (e: KonvaEventObject<Event>) => void;
   onMouseOver: () => void;
   onMouseOut: () => void;

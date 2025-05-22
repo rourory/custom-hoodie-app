@@ -25,7 +25,7 @@ const NavigationBarDrawer: React.FC<React.PropsWithChildren> = ({
             Перейдите по одной из ссылок ниже для дополнительной информации.
           </DrawerDescription>
         </DrawerHeader>
-        <ScrollArea className="h-[300px] w-[90%] px-4 mx-4 mb-4 border border-gray-400 rounded-xl">
+        <ScrollArea className="h-[60vh] w-[90%] px-4 mx-4 mb-4 border border-gray-400 rounded-xl">
           <ul className="pb-4">
             {catalogueComponents.map((el) => (
               <li key={el.title} className="mt-4">
@@ -55,7 +55,6 @@ const NavigationBarDrawer: React.FC<React.PropsWithChildren> = ({
             ))}
           </ul>
         </ScrollArea>
-        {/* <DrawerFooter></DrawerFooter> */}
       </DrawerContent>
     </Drawer>
   );

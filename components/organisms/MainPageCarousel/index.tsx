@@ -79,7 +79,7 @@ const MainPageCarousel = () => {
       }}
       plugins={[
         Autoplay({
-          delay: 5000,
+          delay: 3000,
         }),
       ]}
       className="w-full"
@@ -88,7 +88,7 @@ const MainPageCarousel = () => {
         {images.map((image) => {
           return (
             <CarouselItem
-              className="basis-2/4 sm:basis-2/5 md:basis-1/4 xl:basis-1/6 transition-all duration-300 hover:scale-110"
+              className="basis-2/4 sm:basis-2/5 md:basis-1/4"
               key={image.src}
             >
               <Card className="border-0 shadow-none bg-background">

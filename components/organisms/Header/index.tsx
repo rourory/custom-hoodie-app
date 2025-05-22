@@ -14,7 +14,7 @@ const Header: React.FC<IComponentClassNameAsProp> = ({ className }) => {
       {" "}
       <header
         className={cn(
-          "border-b-[1px] fixed w-full min-w-[375px] shadow-xl shadow-black/10 dark:shadow-white/10 backdrop-blur z-50",
+          "fixed w-full min-w-[375px] shadow-xl shadow-black/10 dark:shadow-white/10 backdrop-blur z-50",
           className
         )}
       >
@@ -23,7 +23,7 @@ const Header: React.FC<IComponentClassNameAsProp> = ({ className }) => {
             {/* Mobile only */}
             <div className="md:hidden flex justify-items-start">
               <NavigationBarDrawer>
-                <Button variant={"outline"}>
+                <Button variant={"outline"} className="bg-background">
                   <Menu />
                 </Button>
               </NavigationBarDrawer>

@@ -37,23 +37,17 @@ export default function Sweatshot(props: JSX.IntrinsicElements["group"]) {
       const tex = new Texture(image);
       tex.flipY = false;
       tex.needsUpdate = true;
-      const overlayMat = new MeshBasicMaterial({
+      const newOverlayMaterial = new MeshBasicMaterial({
         map: tex,
         transparent: true,
         depthWrite: false,
         toneMapped: false,
       });
-      setOverlayMaterial(overlayMat);
+      setOverlayMaterial(newOverlayMaterial);
     }
   }, [image]);
 
-  const textureRef = React.useRef<Texture>(null);
-
   useFrame((state, delta) => {
-    if (textureRef.current) {
-      textureRef.current.flipY = false;
-      textureRef.current.needsUpdate = true;
-    }
     easing.dampC(materials.ClothMaterial.color, color, 0.25, delta);
   });
 

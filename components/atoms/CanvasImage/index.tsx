@@ -11,7 +11,6 @@ const imageInitialHeight = 500;
 
 const CanvasImage: React.FC<CanvasImageProps> = ({
   img,
-  onDragStart,
   onDragEnd,
   isSelected,
   onTransformEnd,
@@ -46,12 +45,12 @@ const CanvasImage: React.FC<CanvasImageProps> = ({
         rotation={img.rotation}
         height={imageInitialHeight}
         width={imageWidth}
-        onDragStart={onDragStart}
         onDragEnd={onDragEnd}
         onTransformEnd={onTransformEnd}
         onMouseOver={onMouseOver}
         onMouseOut={onMouseOut}
         onMouseDown={onMouseDown}
+        onTap={onMouseDown}
         ref={imageRef}
       />
       <KonvaTransformer

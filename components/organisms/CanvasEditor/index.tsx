@@ -72,11 +72,12 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
   }, [images, updateImageTextureOnModel, selectedImageId]);
 
   return (
-    <div className="w-full ">
+    <div className="w-full">
       <div
         ref={canvasContainerRef}
         className="flex relative"
         style={{ height: stageSize.height }}
+        onMouseLeave={() => setSelectedImageId(null)}
       >
         <KonvaStage
           style={{
@@ -105,9 +106,6 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
                     e.currentTarget.x(),
                     e.currentTarget.y()
                   );
-                }}
-                onDragStart={() => {
-                  setSelectedImageId(img.id);
                 }}
                 onTransformEnd={(e) => {
                   updateImagePosition(
