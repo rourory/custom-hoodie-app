@@ -25,36 +25,38 @@ const NavigationBarDrawer: React.FC<React.PropsWithChildren> = ({
             Перейдите по одной из ссылок ниже для дополнительной информации.
           </DrawerDescription>
         </DrawerHeader>
-        <ScrollArea className="h-[60vh] w-[90%] px-4 mx-4 mb-4 border border-gray-400 rounded-xl">
-          <ul className="pb-4">
-            {catalogueComponents.map((el) => (
-              <li key={el.title} className="mt-4">
-                <ListItemLink
-                  href={el.href}
-                  title={el.title}
-                  className="block hover:scale-100"
-                  icon={el.icon}
-                >
-                  {el.description}
-                </ListItemLink>
-              </li>
-            ))}
-            <Separator className="my-4" />
-            {extraInfoComponents.map((el) => (
-              <li key={el.title} className="mt-4">
-                <ListItemLink
-                  key={el.title}
-                  href={el.href}
-                  title={el.title}
-                  className="block hover:scale-100"
-                  icon={el.icon}
-                >
-                  {el.description}
-                </ListItemLink>
-              </li>
-            ))}
-          </ul>
-        </ScrollArea>
+        <div className="w-full h-[60vh] flex">
+          <ScrollArea className=" w-full px-4 mx-4 mb-4 border border-border rounded-md">
+            <ul className="pb-4">
+              {catalogueComponents.map((el) => (
+                <li key={el.title} className="mt-4">
+                  <ListItemLink
+                    href={el.href}
+                    title={el.title}
+                    className="block hover:scale-100"
+                    icon={el.icon}
+                  >
+                    {el.description}
+                  </ListItemLink>
+                </li>
+              ))}
+              <Separator className="my-4" />
+              {extraInfoComponents.map((el) => (
+                <li key={el.title} className="mt-4">
+                  <ListItemLink
+                    key={el.title}
+                    href={el.href}
+                    title={el.title}
+                    className="block hover:scale-100"
+                    icon={el.icon}
+                  >
+                    {el.description}
+                  </ListItemLink>
+                </li>
+              ))}
+            </ul>
+          </ScrollArea>
+        </div>
       </DrawerContent>
     </Drawer>
   );

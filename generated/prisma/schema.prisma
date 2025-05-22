@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model services {
+  id                  Int     @id @default(autoincrement())
+  serviceName         String  @db.VarChar(255)
+  uvUrl               String  @db.VarChar(255)
+  darkModeUvUrl       String  @db.VarChar(255)
+  textureAspectWidth  Int     @db.SmallInt
+  textureAspectHeight Int     @db.SmallInt
+  modelUrl            String  @db.VarChar(255)
+  imageUrl            String? @db.VarChar(255)
+  description         String? @db.VarChar(255)
+  title               String? @db.VarChar(255)
+}

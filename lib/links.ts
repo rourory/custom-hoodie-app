@@ -6,33 +6,33 @@ export const catalogueComponents: {
 }[] = [
   {
     title: "Футболки",
-    href: "/services/print/t-shirt",
+    href: "/services/t-shirt",
     description: "Ваша собственная фотография или логоит на футболке.",
     icon: "/icons/t-shirt.svg",
   },
   {
     title: "Худи",
-    href: "/services/print/hoodie",
+    href: "/services/hoodie",
     description: "Печать DTG-методом на худи с возможнстью выбора цвета.",
     icon: "/icons/star.svg",
   },
   {
     title: "Свитшоты",
-    href: "/services/print/sweatshot",
+    href: "/services/sweatshot",
     description:
       "Выберите цвет и форму свитшота, закажите печать своего логотипа.",
     icon: "/icons/sparkles.svg",
   },
   {
     title: "Кружки",
-    href: "/services/print/cup",
+    href: "/services/cup",
     description:
       "Выбор формы и цвета внутренней части кружки с печатью вашей фотографии.",
     icon: "/icons/coffee.svg",
   },
   {
     title: "Рюкзаки",
-    href: "/services/print/backpack",
+    href: "/services/backpack",
     description: "Печать DTF-методом на рюкзаках и сумках.",
     icon: "/icons/backpack.svg",
   },

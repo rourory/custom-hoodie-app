@@ -31,9 +31,11 @@ const ModelCustomizerDrawer: React.FC<
             Отредактируйте модель по вашему вкусу
           </DrawerDescription>
         </DrawerHeader>
-        <ScrollArea className="h-[60vh] w-[100%] px-2 mb-4 border border-gray-400 rounded-xl">
-          {content}
-        </ScrollArea>
+        <div className="flex h-[60vh] w-full">
+          <ScrollArea className="w-full flex px-2 mx-4 mb-4 border border-border rounded-md">
+            {content}
+          </ScrollArea>
+        </div>
       </DrawerContent>
     </SCNDrawer>
   );

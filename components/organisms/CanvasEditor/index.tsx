@@ -86,7 +86,7 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
             "--dark-bg-image-url": `url(${darkModeUvUrl})`,
             cursor,
           }}
-          className={`bg-[image:var(--bg-image-url)] dark:bg-[image:var(--dark-bg-image-url)] border bg-cover overflow-clip rounded-md absolute top-0 left-0`}
+          className={`bg-[image:var(--bg-image-url)] dark:bg-[image:var(--dark-bg-image-url)] bg-cover overflow-clip rounded-md absolute top-0 left-0`}
           width={stageSize.width}
           height={stageSize.height}
           scaleX={stageSize.scale}

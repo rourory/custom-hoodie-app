@@ -13,7 +13,7 @@ const ListItemLink: React.FC<React.PropsWithChildren<IListItemLink>> = ({
   return (
     <Link
       className={cn(
-        "transition-all duration-150 border-[1px] border-gray-100 p-3 rounded-md hover:border-gray-200 hover:scale-105 hover:shadow-md",
+        "transition-all duration-150 border-[1px] border-border p-3 rounded-md bg-background hover:bg-accent hover:scale-105 hover:shadow-md",
         className
       )}
       href={href}

@@ -20,7 +20,7 @@ const NavigationBarLinks: React.FC<IComponentClassNameAsProp> = ({
     <NavigationMenu className={cn("", className)}>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="bg-background">
+          <NavigationMenuTrigger className="bg-transparent">
             Главная
           </NavigationMenuTrigger>
           <NavigationMenuContent>
@@ -71,7 +71,7 @@ const NavigationBarLinks: React.FC<IComponentClassNameAsProp> = ({
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="bg-background">
+          <NavigationMenuTrigger className="bg-transparent">
             Каталог
           </NavigationMenuTrigger>
           <NavigationMenuContent>
@@ -90,7 +90,7 @@ const NavigationBarLinks: React.FC<IComponentClassNameAsProp> = ({
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem className="lg:hidden">
-          <NavigationMenuTrigger>Дополнительно</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="bg-transparent">Дополнительно</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 sm:w-[350px] md:w-[400px] lg:w-[550px] md:grid-cols-2">
               {extraInfoComponents.map((el) => (

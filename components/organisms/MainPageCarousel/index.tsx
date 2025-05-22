@@ -10,6 +10,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Separator } from "@/components/ui/separator";
 
 const imagesData: { src: string; alt: string; loading: boolean }[] = [
   {
@@ -73,48 +74,51 @@ const MainPageCarousel = () => {
   );
 
   return (
-    <Carousel
-      opts={{
-        loop: true,
-      }}
-      plugins={[
-        Autoplay({
-          delay: 3000,
-        }),
-      ]}
-      className="w-full"
-    >
-      <CarouselContent className="-ml-1">
-        {images.map((image) => {
-          return (
-            <CarouselItem
-              className="basis-2/4 sm:basis-2/5 md:basis-1/4"
-              key={image.src}
-            >
-              <Card className="border-0 shadow-none bg-background">
-                <CardContent className="h-full flex aspect-[2/1.4] items-center justify-center p-0 overflow-clip rounded-2xl">
-                  <Image
-                    className={`object-center h-full object-cover &{image.loading && "hidden"}`}
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.loading ? 0 : 1024}
-                    height={753}
-                    onLoad={() => onImageLoad(image.src)}
-                  />
-                  <Skeleton
-                    className={`relative w-full h-full ${
-                      !image.loading && "hidden"
-                    }`}
-                  />
-                </CardContent>
-              </Card>
-            </CarouselItem>
-          );
-        })}
-      </CarouselContent>
-      {/* <CarouselPrevious />
-      <CarouselNext /> */}
-    </Carousel>
+    <div className="w-full">
+      <Separator className="" />
+
+      <Carousel
+        opts={{
+          loop: true,
+        }}
+        plugins={[
+          Autoplay({
+            delay: 3000,
+          }),
+        ]}
+        className="w-full"
+      >
+        <CarouselContent className="-ml-1">
+          {images.map((image) => {
+            return (
+              <CarouselItem
+                className="basis-2/4 sm:basis-2/5 md:basis-1/4"
+                key={image.src}
+              >
+                <Card className="border-0 shadow-none bg-background">
+                  <CardContent className="h-full flex aspect-[2/1.4] items-center justify-center p-0 overflow-clip rounded-2xl">
+                    <Image
+                      className={`object-center h-full object-cover &{image.loading && "hidden"}`}
+                      src={image.src}
+                      alt={image.alt}
+                      width={image.loading ? 0 : 1024}
+                      height={753}
+                      onLoad={() => onImageLoad(image.src)}
+                    />
+                    <Skeleton
+                      className={`relative w-full h-full ${
+                        !image.loading && "hidden"
+                      }`}
+                    />
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+            );
+          })}
+        </CarouselContent>
+      </Carousel>
+      <Separator className="" />
+    </div>
   );
 };
 

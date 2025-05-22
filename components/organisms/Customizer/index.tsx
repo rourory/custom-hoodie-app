@@ -72,7 +72,6 @@ const Customizer: React.FC<ICustomizer> = ({
             minDistance={2}
             enablePan={false}
           />
-          {/* <rectAreaLight position={new Vector3(0, 0, 2)} intensity={0.3} /> */}
           <Environment preset="city" environmentIntensity={0.7} />
           <Center>{modelProps.model}</Center>
         </React.Suspense>

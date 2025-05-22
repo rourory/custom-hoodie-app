@@ -18,7 +18,8 @@ export default function FooterSocialMediaLink({
         alt={`${socialMediaName}-contact`}
         width={35}
         height={35}
-      />{" "}
+        className="dark:invert"
+      />
     </Link>
   );
 }
