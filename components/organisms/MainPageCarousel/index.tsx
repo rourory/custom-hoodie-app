@@ -75,8 +75,7 @@ const MainPageCarousel = () => {
 
   return (
     <div className="w-full">
-      <Separator className="" />
-
+      <Separator />
       <Carousel
         opts={{
           loop: true,
@@ -117,7 +116,7 @@ const MainPageCarousel = () => {
           })}
         </CarouselContent>
       </Carousel>
-      <Separator className="" />
+      <Separator />
     </div>
   );
 };

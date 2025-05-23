@@ -883,106 +883,112 @@ export namespace Prisma {
 
   export type ServicesAvgAggregateOutputType = {
     id: number | null
-    textureAspectWidth: number | null
-    textureAspectHeight: number | null
+    texture_aspect_width: number | null
+    texture_aspect_height: number | null
   }
 
   export type ServicesSumAggregateOutputType = {
     id: number | null
-    textureAspectWidth: number | null
-    textureAspectHeight: number | null
+    texture_aspect_width: number | null
+    texture_aspect_height: number | null
   }
 
   export type ServicesMinAggregateOutputType = {
     id: number | null
-    serviceName: string | null
-    uvUrl: string | null
-    darkModeUvUrl: string | null
-    textureAspectWidth: number | null
-    textureAspectHeight: number | null
-    modelUrl: string | null
-    imageUrl: string | null
+    service_name: string | null
+    uv_url: string | null
+    texture_aspect_width: number | null
+    texture_aspect_height: number | null
+    model_url: string | null
+    image_url: string | null
     description: string | null
     title: string | null
+    is_available: boolean | null
+    icon_url: string | null
   }
 
   export type ServicesMaxAggregateOutputType = {
     id: number | null
-    serviceName: string | null
-    uvUrl: string | null
-    darkModeUvUrl: string | null
-    textureAspectWidth: number | null
-    textureAspectHeight: number | null
-    modelUrl: string | null
-    imageUrl: string | null
+    service_name: string | null
+    uv_url: string | null
+    texture_aspect_width: number | null
+    texture_aspect_height: number | null
+    model_url: string | null
+    image_url: string | null
     description: string | null
     title: string | null
+    is_available: boolean | null
+    icon_url: string | null
   }
 
   export type ServicesCountAggregateOutputType = {
     id: number
-    serviceName: number
-    uvUrl: number
-    darkModeUvUrl: number
-    textureAspectWidth: number
-    textureAspectHeight: number
-    modelUrl: number
-    imageUrl: number
+    service_name: number
+    uv_url: number
+    texture_aspect_width: number
+    texture_aspect_height: number
+    model_url: number
+    image_url: number
     description: number
     title: number
+    is_available: number
+    icon_url: number
     _all: number
   }
 
 
   export type ServicesAvgAggregateInputType = {
     id?: true
-    textureAspectWidth?: true
-    textureAspectHeight?: true
+    texture_aspect_width?: true
+    texture_aspect_height?: true
   }
 
   export type ServicesSumAggregateInputType = {
     id?: true
-    textureAspectWidth?: true
-    textureAspectHeight?: true
+    texture_aspect_width?: true
+    texture_aspect_height?: true
   }
 
   export type ServicesMinAggregateInputType = {
     id?: true
-    serviceName?: true
-    uvUrl?: true
-    darkModeUvUrl?: true
-    textureAspectWidth?: true
-    textureAspectHeight?: true
-    modelUrl?: true
-    imageUrl?: true
+    service_name?: true
+    uv_url?: true
+    texture_aspect_width?: true
+    texture_aspect_height?: true
+    model_url?: true
+    image_url?: true
     description?: true
     title?: true
+    is_available?: true
+    icon_url?: true
   }
 
   export type ServicesMaxAggregateInputType = {
     id?: true
-    serviceName?: true
-    uvUrl?: true
-    darkModeUvUrl?: true
-    textureAspectWidth?: true
-    textureAspectHeight?: true
-    modelUrl?: true
-    imageUrl?: true
+    service_name?: true
+    uv_url?: true
+    texture_aspect_width?: true
+    texture_aspect_height?: true
+    model_url?: true
+    image_url?: true
     description?: true
     title?: true
+    is_available?: true
+    icon_url?: true
   }
 
   export type ServicesCountAggregateInputType = {
     id?: true
-    serviceName?: true
-    uvUrl?: true
-    darkModeUvUrl?: true
-    textureAspectWidth?: true
-    textureAspectHeight?: true
-    modelUrl?: true
-    imageUrl?: true
+    service_name?: true
+    uv_url?: true
+    texture_aspect_width?: true
+    texture_aspect_height?: true
+    model_url?: true
+    image_url?: true
     description?: true
     title?: true
+    is_available?: true
+    icon_url?: true
     _all?: true
   }
 
@@ -1074,15 +1080,16 @@ export namespace Prisma {
 
   export type ServicesGroupByOutputType = {
     id: number
-    serviceName: string
-    uvUrl: string
-    darkModeUvUrl: string
-    textureAspectWidth: number
-    textureAspectHeight: number
-    modelUrl: string
-    imageUrl: string | null
-    description: string | null
-    title: string | null
+    service_name: string
+    uv_url: string
+    texture_aspect_width: number
+    texture_aspect_height: number
+    model_url: string
+    image_url: string | null
+    description: string
+    title: string
+    is_available: boolean
+    icon_url: string | null
     _count: ServicesCountAggregateOutputType | null
     _avg: ServicesAvgAggregateOutputType | null
     _sum: ServicesSumAggregateOutputType | null
@@ -1106,72 +1113,77 @@ export namespace Prisma {
 
   export type servicesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    serviceName?: boolean
-    uvUrl?: boolean
-    darkModeUvUrl?: boolean
-    textureAspectWidth?: boolean
-    textureAspectHeight?: boolean
-    modelUrl?: boolean
-    imageUrl?: boolean
+    service_name?: boolean
+    uv_url?: boolean
+    texture_aspect_width?: boolean
+    texture_aspect_height?: boolean
+    model_url?: boolean
+    image_url?: boolean
     description?: boolean
     title?: boolean
+    is_available?: boolean
+    icon_url?: boolean
   }, ExtArgs["result"]["services"]>
 
   export type servicesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    serviceName?: boolean
-    uvUrl?: boolean
-    darkModeUvUrl?: boolean
-    textureAspectWidth?: boolean
-    textureAspectHeight?: boolean
-    modelUrl?: boolean
-    imageUrl?: boolean
+    service_name?: boolean
+    uv_url?: boolean
+    texture_aspect_width?: boolean
+    texture_aspect_height?: boolean
+    model_url?: boolean
+    image_url?: boolean
     description?: boolean
     title?: boolean
+    is_available?: boolean
+    icon_url?: boolean
   }, ExtArgs["result"]["services"]>
 
   export type servicesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    serviceName?: boolean
-    uvUrl?: boolean
-    darkModeUvUrl?: boolean
-    textureAspectWidth?: boolean
-    textureAspectHeight?: boolean
-    modelUrl?: boolean
-    imageUrl?: boolean
+    service_name?: boolean
+    uv_url?: boolean
+    texture_aspect_width?: boolean
+    texture_aspect_height?: boolean
+    model_url?: boolean
+    image_url?: boolean
     description?: boolean
     title?: boolean
+    is_available?: boolean
+    icon_url?: boolean
   }, ExtArgs["result"]["services"]>
 
   export type servicesSelectScalar = {
     id?: boolean
-    serviceName?: boolean
-    uvUrl?: boolean
-    darkModeUvUrl?: boolean
-    textureAspectWidth?: boolean
-    textureAspectHeight?: boolean
-    modelUrl?: boolean
-    imageUrl?: boolean
+    service_name?: boolean
+    uv_url?: boolean
+    texture_aspect_width?: boolean
+    texture_aspect_height?: boolean
+    model_url?: boolean
+    image_url?: boolean
     description?: boolean
     title?: boolean
+    is_available?: boolean
+    icon_url?: boolean
   }
 
-  export type servicesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "serviceName" | "uvUrl" | "darkModeUvUrl" | "textureAspectWidth" | "textureAspectHeight" | "modelUrl" | "imageUrl" | "description" | "title", ExtArgs["result"]["services"]>
+  export type servicesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "service_name" | "uv_url" | "texture_aspect_width" | "texture_aspect_height" | "model_url" | "image_url" | "description" | "title" | "is_available" | "icon_url", ExtArgs["result"]["services"]>
 
   export type $servicesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "services"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      serviceName: string
-      uvUrl: string
-      darkModeUvUrl: string
-      textureAspectWidth: number
-      textureAspectHeight: number
-      modelUrl: string
-      imageUrl: string | null
-      description: string | null
-      title: string | null
+      service_name: string
+      uv_url: string
+      texture_aspect_width: number
+      texture_aspect_height: number
+      model_url: string
+      image_url: string | null
+      description: string
+      title: string
+      is_available: boolean
+      icon_url: string | null
     }, ExtArgs["result"]["services"]>
     composites: {}
   }
@@ -1596,15 +1608,16 @@ export namespace Prisma {
    */
   interface servicesFieldRefs {
     readonly id: FieldRef<"services", 'Int'>
-    readonly serviceName: FieldRef<"services", 'String'>
-    readonly uvUrl: FieldRef<"services", 'String'>
-    readonly darkModeUvUrl: FieldRef<"services", 'String'>
-    readonly textureAspectWidth: FieldRef<"services", 'Int'>
-    readonly textureAspectHeight: FieldRef<"services", 'Int'>
-    readonly modelUrl: FieldRef<"services", 'String'>
-    readonly imageUrl: FieldRef<"services", 'String'>
+    readonly service_name: FieldRef<"services", 'String'>
+    readonly uv_url: FieldRef<"services", 'String'>
+    readonly texture_aspect_width: FieldRef<"services", 'Int'>
+    readonly texture_aspect_height: FieldRef<"services", 'Int'>
+    readonly model_url: FieldRef<"services", 'String'>
+    readonly image_url: FieldRef<"services", 'String'>
     readonly description: FieldRef<"services", 'String'>
     readonly title: FieldRef<"services", 'String'>
+    readonly is_available: FieldRef<"services", 'Boolean'>
+    readonly icon_url: FieldRef<"services", 'String'>
   }
     
 
@@ -1987,15 +2000,16 @@ export namespace Prisma {
 
   export const ServicesScalarFieldEnum: {
     id: 'id',
-    serviceName: 'serviceName',
-    uvUrl: 'uvUrl',
-    darkModeUvUrl: 'darkModeUvUrl',
-    textureAspectWidth: 'textureAspectWidth',
-    textureAspectHeight: 'textureAspectHeight',
-    modelUrl: 'modelUrl',
-    imageUrl: 'imageUrl',
+    service_name: 'service_name',
+    uv_url: 'uv_url',
+    texture_aspect_width: 'texture_aspect_width',
+    texture_aspect_height: 'texture_aspect_height',
+    model_url: 'model_url',
+    image_url: 'image_url',
     description: 'description',
-    title: 'title'
+    title: 'title',
+    is_available: 'is_available',
+    icon_url: 'icon_url'
   };
 
   export type ServicesScalarFieldEnum = (typeof ServicesScalarFieldEnum)[keyof typeof ServicesScalarFieldEnum]
@@ -2059,6 +2073,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2080,28 +2101,30 @@ export namespace Prisma {
     OR?: servicesWhereInput[]
     NOT?: servicesWhereInput | servicesWhereInput[]
     id?: IntFilter<"services"> | number
-    serviceName?: StringFilter<"services"> | string
-    uvUrl?: StringFilter<"services"> | string
-    darkModeUvUrl?: StringFilter<"services"> | string
-    textureAspectWidth?: IntFilter<"services"> | number
-    textureAspectHeight?: IntFilter<"services"> | number
-    modelUrl?: StringFilter<"services"> | string
-    imageUrl?: StringNullableFilter<"services"> | string | null
-    description?: StringNullableFilter<"services"> | string | null
-    title?: StringNullableFilter<"services"> | string | null
+    service_name?: StringFilter<"services"> | string
+    uv_url?: StringFilter<"services"> | string
+    texture_aspect_width?: IntFilter<"services"> | number
+    texture_aspect_height?: IntFilter<"services"> | number
+    model_url?: StringFilter<"services"> | string
+    image_url?: StringNullableFilter<"services"> | string | null
+    description?: StringFilter<"services"> | string
+    title?: StringFilter<"services"> | string
+    is_available?: BoolFilter<"services"> | boolean
+    icon_url?: StringNullableFilter<"services"> | string | null
   }
 
   export type servicesOrderByWithRelationInput = {
     id?: SortOrder
-    serviceName?: SortOrder
-    uvUrl?: SortOrder
-    darkModeUvUrl?: SortOrder
-    textureAspectWidth?: SortOrder
-    textureAspectHeight?: SortOrder
-    modelUrl?: SortOrder
-    imageUrl?: SortOrderInput | SortOrder
-    description?: SortOrderInput | SortOrder
-    title?: SortOrderInput | SortOrder
+    service_name?: SortOrder
+    uv_url?: SortOrder
+    texture_aspect_width?: SortOrder
+    texture_aspect_height?: SortOrder
+    model_url?: SortOrder
+    image_url?: SortOrderInput | SortOrder
+    description?: SortOrder
+    title?: SortOrder
+    is_available?: SortOrder
+    icon_url?: SortOrderInput | SortOrder
   }
 
   export type servicesWhereUniqueInput = Prisma.AtLeast<{
@@ -2109,28 +2132,30 @@ export namespace Prisma {
     AND?: servicesWhereInput | servicesWhereInput[]
     OR?: servicesWhereInput[]
     NOT?: servicesWhereInput | servicesWhereInput[]
-    serviceName?: StringFilter<"services"> | string
-    uvUrl?: StringFilter<"services"> | string
-    darkModeUvUrl?: StringFilter<"services"> | string
-    textureAspectWidth?: IntFilter<"services"> | number
-    textureAspectHeight?: IntFilter<"services"> | number
-    modelUrl?: StringFilter<"services"> | string
-    imageUrl?: StringNullableFilter<"services"> | string | null
-    description?: StringNullableFilter<"services"> | string | null
-    title?: StringNullableFilter<"services"> | string | null
+    service_name?: StringFilter<"services"> | string
+    uv_url?: StringFilter<"services"> | string
+    texture_aspect_width?: IntFilter<"services"> | number
+    texture_aspect_height?: IntFilter<"services"> | number
+    model_url?: StringFilter<"services"> | string
+    image_url?: StringNullableFilter<"services"> | string | null
+    description?: StringFilter<"services"> | string
+    title?: StringFilter<"services"> | string
+    is_available?: BoolFilter<"services"> | boolean
+    icon_url?: StringNullableFilter<"services"> | string | null
   }, "id">
 
   export type servicesOrderByWithAggregationInput = {
     id?: SortOrder
-    serviceName?: SortOrder
-    uvUrl?: SortOrder
-    darkModeUvUrl?: SortOrder
-    textureAspectWidth?: SortOrder
-    textureAspectHeight?: SortOrder
-    modelUrl?: SortOrder
-    imageUrl?: SortOrderInput | SortOrder
-    description?: SortOrderInput | SortOrder
-    title?: SortOrderInput | SortOrder
+    service_name?: SortOrder
+    uv_url?: SortOrder
+    texture_aspect_width?: SortOrder
+    texture_aspect_height?: SortOrder
+    model_url?: SortOrder
+    image_url?: SortOrderInput | SortOrder
+    description?: SortOrder
+    title?: SortOrder
+    is_available?: SortOrder
+    icon_url?: SortOrderInput | SortOrder
     _count?: servicesCountOrderByAggregateInput
     _avg?: servicesAvgOrderByAggregateInput
     _max?: servicesMaxOrderByAggregateInput
@@ -2143,103 +2168,111 @@ export namespace Prisma {
     OR?: servicesScalarWhereWithAggregatesInput[]
     NOT?: servicesScalarWhereWithAggregatesInput | servicesScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"services"> | number
-    serviceName?: StringWithAggregatesFilter<"services"> | string
-    uvUrl?: StringWithAggregatesFilter<"services"> | string
-    darkModeUvUrl?: StringWithAggregatesFilter<"services"> | string
-    textureAspectWidth?: IntWithAggregatesFilter<"services"> | number
-    textureAspectHeight?: IntWithAggregatesFilter<"services"> | number
-    modelUrl?: StringWithAggregatesFilter<"services"> | string
-    imageUrl?: StringNullableWithAggregatesFilter<"services"> | string | null
-    description?: StringNullableWithAggregatesFilter<"services"> | string | null
-    title?: StringNullableWithAggregatesFilter<"services"> | string | null
+    service_name?: StringWithAggregatesFilter<"services"> | string
+    uv_url?: StringWithAggregatesFilter<"services"> | string
+    texture_aspect_width?: IntWithAggregatesFilter<"services"> | number
+    texture_aspect_height?: IntWithAggregatesFilter<"services"> | number
+    model_url?: StringWithAggregatesFilter<"services"> | string
+    image_url?: StringNullableWithAggregatesFilter<"services"> | string | null
+    description?: StringWithAggregatesFilter<"services"> | string
+    title?: StringWithAggregatesFilter<"services"> | string
+    is_available?: BoolWithAggregatesFilter<"services"> | boolean
+    icon_url?: StringNullableWithAggregatesFilter<"services"> | string | null
   }
 
   export type servicesCreateInput = {
-    serviceName: string
-    uvUrl: string
-    darkModeUvUrl: string
-    textureAspectWidth: number
-    textureAspectHeight: number
-    modelUrl: string
-    imageUrl?: string | null
-    description?: string | null
-    title?: string | null
+    service_name: string
+    uv_url: string
+    texture_aspect_width: number
+    texture_aspect_height: number
+    model_url: string
+    image_url?: string | null
+    description: string
+    title: string
+    is_available: boolean
+    icon_url?: string | null
   }
 
   export type servicesUncheckedCreateInput = {
     id?: number
-    serviceName: string
-    uvUrl: string
-    darkModeUvUrl: string
-    textureAspectWidth: number
-    textureAspectHeight: number
-    modelUrl: string
-    imageUrl?: string | null
-    description?: string | null
-    title?: string | null
+    service_name: string
+    uv_url: string
+    texture_aspect_width: number
+    texture_aspect_height: number
+    model_url: string
+    image_url?: string | null
+    description: string
+    title: string
+    is_available: boolean
+    icon_url?: string | null
   }
 
   export type servicesUpdateInput = {
-    serviceName?: StringFieldUpdateOperationsInput | string
-    uvUrl?: StringFieldUpdateOperationsInput | string
-    darkModeUvUrl?: StringFieldUpdateOperationsInput | string
-    textureAspectWidth?: IntFieldUpdateOperationsInput | number
-    textureAspectHeight?: IntFieldUpdateOperationsInput | number
-    modelUrl?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    service_name?: StringFieldUpdateOperationsInput | string
+    uv_url?: StringFieldUpdateOperationsInput | string
+    texture_aspect_width?: IntFieldUpdateOperationsInput | number
+    texture_aspect_height?: IntFieldUpdateOperationsInput | number
+    model_url?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    is_available?: BoolFieldUpdateOperationsInput | boolean
+    icon_url?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type servicesUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    serviceName?: StringFieldUpdateOperationsInput | string
-    uvUrl?: StringFieldUpdateOperationsInput | string
-    darkModeUvUrl?: StringFieldUpdateOperationsInput | string
-    textureAspectWidth?: IntFieldUpdateOperationsInput | number
-    textureAspectHeight?: IntFieldUpdateOperationsInput | number
-    modelUrl?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    service_name?: StringFieldUpdateOperationsInput | string
+    uv_url?: StringFieldUpdateOperationsInput | string
+    texture_aspect_width?: IntFieldUpdateOperationsInput | number
+    texture_aspect_height?: IntFieldUpdateOperationsInput | number
+    model_url?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    is_available?: BoolFieldUpdateOperationsInput | boolean
+    icon_url?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type servicesCreateManyInput = {
     id?: number
-    serviceName: string
-    uvUrl: string
-    darkModeUvUrl: string
-    textureAspectWidth: number
-    textureAspectHeight: number
-    modelUrl: string
-    imageUrl?: string | null
-    description?: string | null
-    title?: string | null
+    service_name: string
+    uv_url: string
+    texture_aspect_width: number
+    texture_aspect_height: number
+    model_url: string
+    image_url?: string | null
+    description: string
+    title: string
+    is_available: boolean
+    icon_url?: string | null
   }
 
   export type servicesUpdateManyMutationInput = {
-    serviceName?: StringFieldUpdateOperationsInput | string
-    uvUrl?: StringFieldUpdateOperationsInput | string
-    darkModeUvUrl?: StringFieldUpdateOperationsInput | string
-    textureAspectWidth?: IntFieldUpdateOperationsInput | number
-    textureAspectHeight?: IntFieldUpdateOperationsInput | number
-    modelUrl?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    service_name?: StringFieldUpdateOperationsInput | string
+    uv_url?: StringFieldUpdateOperationsInput | string
+    texture_aspect_width?: IntFieldUpdateOperationsInput | number
+    texture_aspect_height?: IntFieldUpdateOperationsInput | number
+    model_url?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    is_available?: BoolFieldUpdateOperationsInput | boolean
+    icon_url?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type servicesUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    serviceName?: StringFieldUpdateOperationsInput | string
-    uvUrl?: StringFieldUpdateOperationsInput | string
-    darkModeUvUrl?: StringFieldUpdateOperationsInput | string
-    textureAspectWidth?: IntFieldUpdateOperationsInput | number
-    textureAspectHeight?: IntFieldUpdateOperationsInput | number
-    modelUrl?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    service_name?: StringFieldUpdateOperationsInput | string
+    uv_url?: StringFieldUpdateOperationsInput | string
+    texture_aspect_width?: IntFieldUpdateOperationsInput | number
+    texture_aspect_height?: IntFieldUpdateOperationsInput | number
+    model_url?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    is_available?: BoolFieldUpdateOperationsInput | boolean
+    icon_url?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2283,6 +2316,11 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -2290,53 +2328,56 @@ export namespace Prisma {
 
   export type servicesCountOrderByAggregateInput = {
     id?: SortOrder
-    serviceName?: SortOrder
-    uvUrl?: SortOrder
-    darkModeUvUrl?: SortOrder
-    textureAspectWidth?: SortOrder
-    textureAspectHeight?: SortOrder
-    modelUrl?: SortOrder
-    imageUrl?: SortOrder
+    service_name?: SortOrder
+    uv_url?: SortOrder
+    texture_aspect_width?: SortOrder
+    texture_aspect_height?: SortOrder
+    model_url?: SortOrder
+    image_url?: SortOrder
     description?: SortOrder
     title?: SortOrder
+    is_available?: SortOrder
+    icon_url?: SortOrder
   }
 
   export type servicesAvgOrderByAggregateInput = {
     id?: SortOrder
-    textureAspectWidth?: SortOrder
-    textureAspectHeight?: SortOrder
+    texture_aspect_width?: SortOrder
+    texture_aspect_height?: SortOrder
   }
 
   export type servicesMaxOrderByAggregateInput = {
     id?: SortOrder
-    serviceName?: SortOrder
-    uvUrl?: SortOrder
-    darkModeUvUrl?: SortOrder
-    textureAspectWidth?: SortOrder
-    textureAspectHeight?: SortOrder
-    modelUrl?: SortOrder
-    imageUrl?: SortOrder
+    service_name?: SortOrder
+    uv_url?: SortOrder
+    texture_aspect_width?: SortOrder
+    texture_aspect_height?: SortOrder
+    model_url?: SortOrder
+    image_url?: SortOrder
     description?: SortOrder
     title?: SortOrder
+    is_available?: SortOrder
+    icon_url?: SortOrder
   }
 
   export type servicesMinOrderByAggregateInput = {
     id?: SortOrder
-    serviceName?: SortOrder
-    uvUrl?: SortOrder
-    darkModeUvUrl?: SortOrder
-    textureAspectWidth?: SortOrder
-    textureAspectHeight?: SortOrder
-    modelUrl?: SortOrder
-    imageUrl?: SortOrder
+    service_name?: SortOrder
+    uv_url?: SortOrder
+    texture_aspect_width?: SortOrder
+    texture_aspect_height?: SortOrder
+    model_url?: SortOrder
+    image_url?: SortOrder
     description?: SortOrder
     title?: SortOrder
+    is_available?: SortOrder
+    icon_url?: SortOrder
   }
 
   export type servicesSumOrderByAggregateInput = {
     id?: SortOrder
-    textureAspectWidth?: SortOrder
-    textureAspectHeight?: SortOrder
+    texture_aspect_width?: SortOrder
+    texture_aspect_height?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -2391,6 +2432,14 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2405,6 +2454,10 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -2444,6 +2497,11 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -2516,6 +2574,14 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
 

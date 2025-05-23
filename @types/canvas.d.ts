@@ -1,6 +1,5 @@
 declare interface CanvasEditorProps {
   uvUrl: string;
-  darkModeUvUrl: string;
   aspectWidth: number;
   aspectHeight: number;
 }

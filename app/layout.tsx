@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="min-w-[375px]">
-      <body className={`dark ${comfortaaFont.className} antialiased`}>
+      <body className={`${comfortaaFont.className} antialiased`}>
         <Header />
         <NextTopLoader showSpinner={false} color="#9f0006" height={2} />
         {children}

@@ -7,14 +7,18 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { catalogueComponents, extraInfoComponents } from "@/lib/links";
+import { extraInfoComponents } from "@/lib/links";
 import ListItemLink from "@/components/atoms/ListItemLink";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { services } from "@/generated/prisma";
+import LockedState from "@/components/atoms/LockedState";
 
-const NavigationBarDrawer: React.FC<React.PropsWithChildren> = ({
-  children,
-}) => {
+const NavigationBarDrawer: React.FC<
+  React.PropsWithChildren & INavigationComponent
+> = async ({ children, services }) => {
+  const serviceList = services as services[];
+
   return (
     <Drawer>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
@@ -28,13 +32,20 @@ const NavigationBarDrawer: React.FC<React.PropsWithChildren> = ({
         <div className="w-full h-[60vh] flex">
           <ScrollArea className=" w-full px-4 mx-4 mb-4 border border-border rounded-md">
             <ul className="pb-4">
-              {catalogueComponents.map((el) => (
-                <li key={el.title} className="mt-4">
+              {serviceList.map((el) => (
+                <li key={el.title} className="mt-4 relative">
+                  {!el.is_available && (
+                    <LockedState
+                      reason={"Функция в разработке"}
+                      onlyIcon
+                      iconSize={30}
+                    />
+                  )}
                   <ListItemLink
-                    href={el.href}
+                    href={`services/${el.service_name}`}
                     title={el.title}
                     className="block hover:scale-100"
-                    icon={el.icon}
+                    icon={el.icon_url || ""}
                   >
                     {el.description}
                   </ListItemLink>

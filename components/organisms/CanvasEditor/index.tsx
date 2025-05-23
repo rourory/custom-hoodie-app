@@ -16,7 +16,6 @@ import FloatingDeleteButton from "@/components/atoms/DeleteButton";
 
 const CanvasEditor: React.FC<CanvasEditorProps> = ({
   uvUrl,
-  darkModeUvUrl,
   aspectWidth,
   aspectHeight,
 }) => {
@@ -70,7 +69,6 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
     updateImageTextureOnModel();
     setIsCanvasReady(true);
   }, [images, updateImageTextureOnModel, selectedImageId]);
-
   return (
     <div className="w-full">
       <div
@@ -83,10 +81,9 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
           style={{
             //@ts-ignore
             "--bg-image-url": `url(${uvUrl})`,
-            "--dark-bg-image-url": `url(${darkModeUvUrl})`,
             cursor,
           }}
-          className={`bg-[image:var(--bg-image-url)] dark:bg-[image:var(--dark-bg-image-url)] bg-cover overflow-clip rounded-md absolute top-0 left-0`}
+          className={`bg-[image:var(--bg-image-url)] bg-cover overflow-clip rounded-md absolute top-0 left-0`}
           width={stageSize.width}
           height={stageSize.height}
           scaleX={stageSize.scale}

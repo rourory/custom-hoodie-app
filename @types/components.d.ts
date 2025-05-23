@@ -13,10 +13,13 @@ declare interface ICustomizer extends IComponentClassNameAsProp {
   position?: Vector3;
   fov?: number;
   modelProps: {
-    model: React.ReactNode;
+    model?: React.ReactNode;
     uvUrl: string;
-    darkModeUvUrl: string;
     textureAspectWidth: number;
     textureAspectHeight: number;
   };
+}
+
+declare interface INavigationComponent extends IComponentClassNameAsProp {
+  services: Array<any>;
 }

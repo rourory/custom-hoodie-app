@@ -15,7 +15,6 @@ export default function Footer() {
             blockElements={[
               { title: "Свитшоты", href: "/services/sweatshot" },
               { title: "Кружки", href: "/services/cup" },
-              { title: "Футболки", href: "/services/t-shirt" },
             ]}
           />
           <FooterInfoLinkBlock

@@ -9,6 +9,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import React from "react";
 import { Drawer } from "vaul";
+import HWComponentMountingDelayer from "../HighWeightComponentDelayer";
 
 interface ModelCustomizerDrawerProps {
   content: React.ReactNode;
@@ -32,9 +33,11 @@ const ModelCustomizerDrawer: React.FC<
           </DrawerDescription>
         </DrawerHeader>
         <div className="flex h-[60vh] w-full">
-          <ScrollArea className="w-full flex px-2 mx-4 mb-4 border border-border rounded-md">
-            {content}
-          </ScrollArea>
+          <HWComponentMountingDelayer delay={200}>
+            <ScrollArea className="w-full flex px-2 mx-4 mb-4 border border-border rounded-md relative">
+              {content}
+            </ScrollArea>
+          </HWComponentMountingDelayer>
         </div>
       </DrawerContent>
     </SCNDrawer>

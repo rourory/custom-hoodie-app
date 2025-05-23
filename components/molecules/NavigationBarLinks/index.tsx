@@ -10,12 +10,17 @@ import {
 import ListItemLink from "@/components/atoms/ListItemLink";
 import Link from "next/link";
 import Image from "next/image";
-import { catalogueComponents, extraInfoComponents } from "@/lib/links";
+import { extraInfoComponents } from "@/lib/links";
 import { cn } from "@/lib/utils";
+import { services } from "@/generated/prisma";
+import LockedState from "@/components/atoms/LockedState";
 
-const NavigationBarLinks: React.FC<IComponentClassNameAsProp> = ({
+const NavigationBarLinks: React.FC<INavigationComponent> = ({
   className,
+  services,
 }) => {
+  const serviceList = services as services[];
+
   return (
     <NavigationMenu className={cn("", className)}>
       <NavigationMenuList>
@@ -76,21 +81,27 @@ const NavigationBarLinks: React.FC<IComponentClassNameAsProp> = ({
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 sm:w-[350px] md:w-[400px] lg:w-[550px] md:grid-cols-2">
-              {catalogueComponents.map((el) => (
-                <ListItemLink
-                  key={el.title}
-                  title={el.title}
-                  href={el.href}
-                  icon={el.icon}
-                >
-                  {el.description}
-                </ListItemLink>
+              {serviceList.map((el) => (
+                <li className="relative col-span-1 flex" key={el.title}>
+                  {!el.is_available && (
+                    <LockedState reason="Функция в разработке" iconSize={30} onlyIcon />
+                  )}
+                  <ListItemLink
+                    title={el.title}
+                    href={`services/${el.service_name}`}
+                    icon={el.icon_url || ""}
+                  >
+                    {el.description}
+                  </ListItemLink>
+                </li>
               ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem className="lg:hidden">
-          <NavigationMenuTrigger className="bg-transparent">Дополнительно</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="bg-transparent">
+            Дополнительно
+          </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 sm:w-[350px] md:w-[400px] lg:w-[550px] md:grid-cols-2">
               {extraInfoComponents.map((el) => (

@@ -18,10 +18,10 @@ export default async function Product({
 
   const service = await prisma.services.findFirst({
     where: {
-      serviceName,
+      service_name: serviceName,
     },
   });
-  
+
   if (!service) {
     notFound();
   }
@@ -33,14 +33,18 @@ export default async function Product({
       model = <Sweatshot />;
     }
   }
+
+  if (!model) {
+    notFound();
+  }
+
   return (
     <Customizer
       modelProps={{
         model: model,
-        uvUrl: service.modelUrl,
-        darkModeUvUrl: service.darkModeUvUrl,
-        textureAspectWidth: service.textureAspectWidth,
-        textureAspectHeight: service.textureAspectHeight,
+        uvUrl: service.uv_url,
+        textureAspectWidth: service.texture_aspect_width,
+        textureAspectHeight: service.texture_aspect_height,
       }}
     />
   );

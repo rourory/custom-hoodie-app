@@ -1,3 +1,4 @@
+import LockedState from "@/components/atoms/LockedState";
 import Container from "@/components/organisms/Container";
 import Footer from "@/components/organisms/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -18,17 +19,25 @@ export default async function Services() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-7 mx-5">
             {services.map((service) => (
               <Card
-                key={service.serviceName}
-                className="flex flex-col col-span-1 hover:bg-accent hover:scale-105 transition-all duration-150 cursor-pointer"
+                key={service.service_name}
+                className={
+                  "flex flex-col col-span-1 hover:bg-accent transition-all duration-150 cursor-pointer relative" +
+                  (service.is_available
+                    ? " hover:scale-105"
+                    : " pointer-events-none")
+                }
               >
-                <Link href={`/services/${service.serviceName}`}>
+                {!service.is_available && (
+                  <LockedState reason="Функция в разработке" />
+                )}
+                <Link href={`/services/${service.service_name}`}>
                   <CardContent>
                     <Image
-                      src={service.imageUrl || ""}
-                      alt={service.serviceName}
-                      width={200}
-                      height={200}
-                      className="w-full rounded-md"
+                      src={service.image_url || ""}
+                      alt={service.service_name}
+                      width={400}
+                      height={400}
+                      className="w-full rounded-md aspect-[4/3.5] object-cover"
                     />
                     <h2 className="text-lg font-semibold mt-2 text-header">
                       {service.title}

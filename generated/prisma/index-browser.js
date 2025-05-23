@@ -122,15 +122,16 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.ServicesScalarFieldEnum = {
   id: 'id',
-  serviceName: 'serviceName',
-  uvUrl: 'uvUrl',
-  darkModeUvUrl: 'darkModeUvUrl',
-  textureAspectWidth: 'textureAspectWidth',
-  textureAspectHeight: 'textureAspectHeight',
-  modelUrl: 'modelUrl',
-  imageUrl: 'imageUrl',
+  service_name: 'service_name',
+  uv_url: 'uv_url',
+  texture_aspect_width: 'texture_aspect_width',
+  texture_aspect_height: 'texture_aspect_height',
+  model_url: 'model_url',
+  image_url: 'image_url',
   description: 'description',
-  title: 'title'
+  title: 'title',
+  is_available: 'is_available',
+  icon_url: 'icon_url'
 };
 
 exports.Prisma.SortOrder = {
