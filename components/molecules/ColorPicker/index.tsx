@@ -23,6 +23,7 @@ const ColorPicker: React.FC<
             key={color}
             color={color}
             onClick={() => setColor(color)}
+            circle
           />
         );
       })}

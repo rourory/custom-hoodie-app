@@ -37,6 +37,7 @@ export default function Sweatshot(props: JSX.IntrinsicElements["group"]) {
       const tex = new Texture(image);
       tex.flipY = false;
       tex.needsUpdate = true;
+
       const newOverlayMaterial = new MeshBasicMaterial({
         map: tex,
         transparent: true,

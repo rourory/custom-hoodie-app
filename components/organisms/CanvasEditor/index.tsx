@@ -13,6 +13,12 @@ import CanvasImage from "@/components/atoms/CanvasImage";
 import { KonvaEventObject } from "konva/lib/Node";
 import ImageInput from "@/components/atoms/ImageInput";
 import FloatingDeleteButton from "@/components/atoms/DeleteButton";
+import CanvasText from "@/components/atoms/CanvasText";
+import TextInput from "@/components/molecules/TextInput";
+import ColorPickerDropdownMenu from "@/components/molecules/ColorPickerDropdownMenu";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import FontFamilyPickerDropdownMenu from "@/components/molecules/FontFamiliyPickerDropdownMenu";
 
 const CanvasEditor: React.FC<CanvasEditorProps> = ({
   uvUrl,
@@ -33,32 +39,63 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
   );
 
   const {
-    selectedImageId,
-    setSelectedImageId,
-    images,
+    selectedObjectId,
+    selectedObjectType,
+    setSelectedObjectId,
+    objects,
     addImage,
-    deleteSelectedImage,
-    updateImagePosition,
-    updateImageScale,
-    updateImageRotation,
+    addText,
+    changeSelectedTextColor,
+    changeSelectedTextFontFamily,
+    deleteSelectedObject,
+    updateObjectDimentions,
   } = useCanvasCustomizerStore();
+
+  const handleOnDragObjectEnd = React.useCallback(
+    (e: KonvaEventObject<DragEvent>, obj: DraggableCanvasObject) => {
+      updateObjectDimentions(
+        obj.id,
+        e.currentTarget.x(),
+        e.currentTarget.y(),
+        obj.scaleX,
+        obj.scaleY,
+        obj.rotation
+      );
+    },
+    []
+  );
+
+  const handleOnTransformObjectEnd = React.useCallback(
+    (e: KonvaEventObject<Event>, obj: DraggableCanvasObject) => {
+      updateObjectDimentions(
+        obj.id,
+        e.currentTarget.x(),
+        e.currentTarget.y(),
+        e.currentTarget.scaleX(),
+        e.currentTarget.scaleY(),
+        e.currentTarget.rotation()
+      );
+    },
+    []
+  );
 
   const checkDeselect = React.useCallback(
     (e: KonvaEventObject<MouseEvent>) => {
       const clickedOnEmpty = e.target === e.target.getStage();
       if (clickedOnEmpty) {
-        setSelectedImageId(null);
+        setSelectedObjectId(null, null);
       }
     },
-    [setSelectedImageId]
+    [setSelectedObjectId]
   );
 
   const updateImageTextureOnModel = useCallback(() => {
     if (!isCanvasReady) return;
     stageRef.current
-      ?.toImage({ pixelRatio: 7, quality: 1 })
-      .then((img) => {
-        if (img) setImage(img as HTMLImageElement);
+      ?.toImage({
+        pixelRatio: 4,
+        quality: 1,
+        callback: setImage,
       })
       .catch((error) =>
         console.log("Error while getting image from canvas:", error)
@@ -67,15 +104,18 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
 
   React.useEffect(() => {
     updateImageTextureOnModel();
+  }, [objects, selectedObjectId]);
+
+  React.useEffect(() => {
     setIsCanvasReady(true);
-  }, [images, updateImageTextureOnModel, selectedImageId]);
+  }, []);
+
   return (
     <div className="w-full">
       <div
         ref={canvasContainerRef}
         className="flex relative"
         style={{ height: stageSize.height }}
-        onMouseLeave={() => setSelectedImageId(null)}
       >
         <KonvaStage
           style={{
@@ -92,47 +132,103 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
           ref={stageRef}
         >
           <KonvaLayer>
-            {images.map((img) => (
-              <CanvasImage
-                img={img}
-                key={img.id}
-                isSelected={selectedImageId == img.id}
-                onDragEnd={(e) => {
-                  updateImagePosition(
-                    img.id,
-                    e.currentTarget.x(),
-                    e.currentTarget.y()
-                  );
-                }}
-                onTransformEnd={(e) => {
-                  updateImagePosition(
-                    img.id,
-                    e.currentTarget.x(),
-                    e.currentTarget.y()
-                  );
-                  updateImageRotation(img.id, e.currentTarget.rotation());
-                  updateImageScale(
-                    img.id,
-                    e.currentTarget.scaleX(),
-                    e.currentTarget.scaleY()
-                  );
-                }}
-                onMouseOver={() => setCursor("move")}
-                onMouseOut={() => setCursor("default")}
-                onMouseDown={() => {
-                  setSelectedImageId(img.id);
-                }}
-              />
-            ))}
+            {objects.map(
+              (img) =>
+                img.type === "image" && (
+                  <CanvasImage
+                    img={img}
+                    key={img.id}
+                    isSelected={selectedObjectId == img.id}
+                    onDragEnd={(e) => handleOnDragObjectEnd(e, img)}
+                    onTransformEnd={(e) => handleOnTransformObjectEnd(e, img)}
+                    onMouseOver={() => setCursor("move")}
+                    onMouseOut={() => setCursor("default")}
+                    onMouseDown={() => {
+                      setSelectedObjectId(img.id, "image");
+                    }}
+                  />
+                )
+            )}
+            {objects.map(
+              (txt) =>
+                txt.type === "text" && (
+                  <CanvasText
+                    key={txt.id}
+                    text={{
+                      id: txt.id,
+                      text: txt.text,
+                      fontSize: txt.fontSize,
+                      fontFamily: txt.fontFamily,
+                      x: txt.x,
+                      y: txt.y,
+                      rotation: txt.rotation,
+                      scaleX: txt.scaleX,
+                      scaleY: txt.scaleY,
+                      color: txt.color,
+                    }}
+                    isSelected={selectedObjectId == txt.id}
+                    onDragEnd={(e) => handleOnDragObjectEnd(e, txt)}
+                    onTransformEnd={(e) => handleOnTransformObjectEnd(e, txt)}
+                    onMouseOver={() => setCursor("move")}
+                    onMouseOut={() => setCursor("default")}
+                    onMouseDown={() => {
+                      setSelectedObjectId(txt.id, "text");
+                    }}
+                  />
+                )
+            )}
           </KonvaLayer>
         </KonvaStage>
         <FloatingDeleteButton
-          visible={Boolean(selectedImageId)}
-          onClick={deleteSelectedImage}
+          visible={Boolean(selectedObjectId)}
+          onClick={deleteSelectedObject}
         />
       </div>
-
-      <ImageInput addImage={addImage} />
+      <div>
+        <div className="flex gap-2">
+          <ColorPickerDropdownMenu onChangeColor={changeSelectedTextColor}>
+            <Button
+              variant={"outline"}
+              disabled={!selectedObjectId || selectedObjectType !== "text"}
+              className="cursor-pointer relative overflow-clip"
+            >
+              <Image
+                src={"/icons/palette.svg"}
+                width={24}
+                height={24}
+                alt="change-text-color"
+                className="dark:invert"
+              />
+              <div
+                className="absolute bottom-0 left-0 w-full h-[12%]"
+                style={{
+                  backgroundColor:
+                    selectedObjectId && selectedObjectType === "text"
+                      ? objects.find((obj) => obj.id === selectedObjectId)
+                          ?.color
+                      : "",
+                }}
+              />
+            </Button>
+          </ColorPickerDropdownMenu>
+          <FontFamilyPickerDropdownMenu onFontFamilyChange={changeSelectedTextFontFamily}>
+            <Button
+              variant={"outline"}
+              disabled={!selectedObjectId || selectedObjectType !== "text"}
+            >
+              <Image
+                src={"/icons/type-outline.svg"}
+                width={24}
+                height={24}
+                alt="change-fint-family"
+                className="dark:invert"
+              />
+            </Button>
+          </FontFamilyPickerDropdownMenu>
+        </div>
+        <TextInput addText={addText} className="w-full mt-1" />
+        <ImageInput addImage={addImage} className="w-full mt-1" />
+      </div>
     </div>
   );
 };

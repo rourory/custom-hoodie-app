@@ -84,11 +84,15 @@ const NavigationBarLinks: React.FC<INavigationComponent> = ({
               {serviceList.map((el) => (
                 <li className="relative col-span-1 flex" key={el.title}>
                   {!el.is_available && (
-                    <LockedState reason="Функция в разработке" iconSize={30} onlyIcon />
+                    <LockedState
+                      reason="Функция в разработке"
+                      iconSize={30}
+                      onlyIcon
+                    />
                   )}
                   <ListItemLink
                     title={el.title}
-                    href={`services/${el.service_name}`}
+                    href={`/services/${el.service_name}`}
                     icon={el.icon_url || ""}
                   >
                     {el.description}

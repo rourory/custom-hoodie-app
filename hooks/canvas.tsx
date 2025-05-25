@@ -31,7 +31,7 @@ import { useState } from "react";
 // };
 
 export const useImages = (afterDeleteCallback: () => void) => {
-  const [images, setImages] = useState<CanvasImage[]>([]);
+  const [images, setImages] = useState<CanvasAppImage[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
   const handleDelete = () => {

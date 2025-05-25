@@ -1,21 +1,32 @@
 import { create } from "zustand";
 
 export interface CanvasCustomizerStoreState {
-  selectedImageId: number | null;
-  setSelectedImageId: (id: number | null) => void;
-  images: CanvasImage[];
+  selectedObjectId: number | null;
+  selectedObjectType: string | null;
+  setSelectedObjectId: (id: number | null, type: string | null) => void;
+  objects: Array<DraggableCanvasObject>;
   addImage: (file: File | undefined) => void;
-  deleteSelectedImage: () => void;
-  updateImagePosition: (id: number, x: number, y: number) => void;
-  updateImageScale: (id: number, scaleX: number, scaleY: number) => void;
-  updateImageRotation: (id: number, rotation: number) => void;
+  addText: (text: string) => void;
+  changeSelectedTextColor: (color: string) => void;
+  changeSelectedTextFontFamily: (fontFamily: string) => void;
+  deleteSelectedObject: () => void;
+  updateObjectDimentions: (
+    id: number,
+    x: number,
+    y: number,
+    scaleX: number,
+    scaleY: number,
+    rotation: number
+  ) => void;
 }
 
 export const useCanvasCustomizerStore = create<CanvasCustomizerStoreState>()(
   (set, getState) => ({
-    images: [],
-    selectedImageId: null,
-    setSelectedImageId: (id: number | null) => set({ selectedImageId: id }),
+    objects: [],
+    selectedObjectId: null,
+    selectedObjectType: null,
+    setSelectedObjectId: (id, type) =>
+      set({ selectedObjectId: id, selectedObjectType: type }),
     addImage: (file) => {
       if (!file) return;
       const img = new window.Image();
@@ -23,8 +34,8 @@ export const useCanvasCustomizerStore = create<CanvasCustomizerStoreState>()(
       img.onload = () => {
         const id = Date.now();
         set({
-          images: [
-            ...getState().images,
+          objects: [
+            ...getState().objects,
             {
               id,
               image: img,
@@ -33,43 +44,65 @@ export const useCanvasCustomizerStore = create<CanvasCustomizerStoreState>()(
               scaleX: 1,
               scaleY: 1,
               rotation: 0,
+              type: "image",
             },
           ],
         });
       };
     },
-    deleteSelectedImage: () =>
+    addText: (text) => {
+      const id = Date.now();
       set({
-        images: getState().images.filter(
-          (image) => image.id !== getState().selectedImageId
+        objects: [
+          ...getState().objects,
+          {
+            id,
+            text,
+            x: 50,
+            y: 50,
+            scaleX: 1,
+            scaleY: 1,
+            rotation: 0,
+            fontFamily: "Arial",
+            fontSize: 160,
+            type: "text",
+            color: "black",
+          },
+        ],
+      });
+    },
+    changeSelectedTextColor: (color) => {
+      set({
+        objects: getState().objects.map((object) => {
+          if (object.id === getState().selectedObjectId) {
+            return { ...object, color };
+          }
+          return object;
+        }),
+      });
+    },
+    changeSelectedTextFontFamily: (fontFamily) => {
+      set({
+        objects: getState().objects.map((object) => {
+          if (object.id === getState().selectedObjectId) {
+            return { ...object, fontFamily };
+          }
+          return object;
+        }),
+      });
+    },
+    deleteSelectedObject: () =>
+      set({
+        objects: getState().objects.filter(
+          (image) => image.id !== getState().selectedObjectId
         ),
-        selectedImageId: null,
+        selectedObjectId: null,
       }),
-    updateImagePosition: (id, x, y) => {
+    updateObjectDimentions: (id, x, y, scaleX, scaleY, rotation) => {
       set({
-        images: getState().images.map((image) => {
+        objects: getState().objects.map((image) => {
           if (image.id === id) {
-            return { ...image, x, y };
-          }
-          return image;
-        }),
-      });
-    },
-    updateImageScale: (id, scaleX, scaleY) => {
-      set({
-        images: getState().images.map((image) => {
-          if (image.id === id) {
-            return { ...image, scaleX, scaleY };
-          }
-          return image;
-        }),
-      });
-    },
-    updateImageRotation(id, rotation) {
-      set({
-        images: getState().images.map((image) => {
-          if (image.id === id) {
-            return { ...image, rotation };
+            return { ...image, x, y, scaleX, scaleY, rotation };
           }
           return image;
         }),

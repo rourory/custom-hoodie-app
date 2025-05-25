@@ -22,8 +22,9 @@ const CanvasImage: React.FC<CanvasImageProps> = ({
   const transformerRef = React.useRef<Transformer>(null);
 
   const imageWidth = React.useMemo(() => {
-    return (img.image.width * imageInitialHeight) / img.image.height;
-  }, [img.image.width, img.image.height]);
+    if (img.image)
+      return (img.image.width * imageInitialHeight) / img.image.height;
+  }, [img.image?.width, img.image?.height]);
 
   React.useEffect(() => {
     if (isSelected && transformerRef.current && imageRef.current) {

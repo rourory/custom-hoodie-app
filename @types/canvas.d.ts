@@ -4,14 +4,28 @@ declare interface CanvasEditorProps {
   aspectHeight: number;
 }
 
-declare interface CanvasImage {
+declare interface CanvasObject {
   id: number;
-  image: HTMLImageElement;
   x: number;
   y: number;
   scaleX: number;
   scaleY: number;
   rotation: number;
+}
+
+declare interface CanvasAppImage extends CanvasObject {
+  image?: HTMLImageElement;
+}
+
+declare interface CanvasAppText extends CanvasObject {
+  text?: string;
+  fontSize?: number;
+  fontFamily?: string;
+  color?: string;
+}
+
+declare interface DraggableCanvasObject extends CanvasAppText, CanvasAppImage {
+  type: "text" | "image";
 }
 
 declare interface CanvasStageSize {
@@ -29,14 +43,21 @@ declare type ResponsiveCanvasHook = (
   containerRef: React.RefObject<HTMLDivElement | null>;
 };
 
-declare interface CanvasImageProps {
-  img: CanvasImage;
+declare interface DraggableCanvasComponentProps {
   isSelected: boolean;
   onDragEnd: (e: KonvaEventObject<DragEvent>) => void;
   onTransformEnd: (e: KonvaEventObject<Event>) => void;
   onMouseOver: () => void;
   onMouseOut: () => void;
   onMouseDown: () => void;
+}
+
+declare interface CanvasImageProps extends DraggableCanvasComponentProps {
+  img: CanvasAppImage;
+}
+
+declare interface CanvasTextProps extends DraggableCanvasComponentProps {
+  text: CanvasAppText;
 }
 
 declare interface FloatingDeleteButtonProps extends IComponentClassNameAsProp {

@@ -41,7 +41,7 @@ const Customizer: React.FC<ICustomizer> = ({
   position = new Vector3(-1, 1, 3.5),
   fov = 25,
 }) => {
-  const { setSelectedImageId } = useCanvasCustomizerStore();
+  const { setSelectedObjectId } = useCanvasCustomizerStore();
 
   return (
     <div
@@ -103,7 +103,7 @@ const Customizer: React.FC<ICustomizer> = ({
           >
             <ModelCustomizerDrawer
               onOpenChange={(open) => {
-                if (!open) setSelectedImageId(null);
+                if (!open) setSelectedObjectId(null, null);
               }}
               content={
                 <CanvasEditor
