@@ -16,13 +16,9 @@ const availableFontFamilies = [
   "Courier New",
 ];
 
-interface FontFamilyPickerDropdownMenuProps {
-  onFontFamilyChange: (fontFamily: string) => void;
-}
-
 const FontFamilyPickerDropdownMenu: React.FC<
-  FontFamilyPickerDropdownMenuProps & React.PropsWithChildren
-> = ({ children, onFontFamilyChange }) => {
+  IFontFamilyPickerDropdownMenu & React.PropsWithChildren
+> = ({ children, selectedObjectFontFamily, onFontFamilyChange }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
@@ -33,10 +29,19 @@ const FontFamilyPickerDropdownMenu: React.FC<
           {availableFontFamilies.map((fontFamily) => (
             <DropdownMenuItem
               key={fontFamily}
-              onClick={() => onFontFamilyChange(fontFamily)}
+              onClick={(e) => {
+                e.preventDefault();
+                onFontFamilyChange(fontFamily);
+              }}
               style={{ fontFamily }}
             >
-              <div className="w-[5px] h-[5px] rounded-[50%] bg-foreground" />
+              <div
+                className="w-[6px] h-[6px] rounded-[50%] bg-foreground transition-all duration-150"
+                style={{
+                  opacity: selectedObjectFontFamily === fontFamily ? 1 : 0,
+                  scale: selectedObjectFontFamily === fontFamily ? 1 : 0.5,
+                }}
+              />
               <p>{fontFamily}</p>
             </DropdownMenuItem>
           ))}

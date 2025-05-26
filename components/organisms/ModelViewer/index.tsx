@@ -1,6 +1,10 @@
+"use client";
+
 import ModelLoader from "@/components/atoms/ModelLoader";
+
 import { Center, Environment, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+
 import React from "react";
 import { degToRad } from "three/src/math/MathUtils.js";
 

@@ -5,11 +5,10 @@ import Image from "next/image";
 import FontFamilyPickerDropdownMenu from "@/components/molecules/FontFamiliyPickerDropdownMenu";
 import ModifyTextDialog from "@/components/molecules/AddTextDialog";
 
-
-
 const AdvancedTextStyleButtonBlock: React.FC<IAdvancedTextStyleButtonBlock> = ({
   textButtonsDisabled,
   selectedTextColor,
+  selectedFontFamily,
   changeSelectedTextColor,
   changeSelectedTextFontFamily,
   changeSelectedText,
@@ -30,14 +29,17 @@ const AdvancedTextStyleButtonBlock: React.FC<IAdvancedTextStyleButtonBlock> = ({
             className="dark:invert"
           />
           <div
-            className="absolute bottom-[4px] right-[4px] w-[10px] h-[10px] rounded-[50%] border-1"
+            className="absolute bottom-[4px] right-[4px] w-[10px] h-[10px] rounded-[50%] border-1 border-border transition-all duration-150"
             style={{
               backgroundColor: !textButtonsDisabled ? selectedTextColor : "",
+              scale: textButtonsDisabled ? 0.3 : 1,
+              opacity: textButtonsDisabled ? 0 : 1,
             }}
           />
         </Button>
       </ColorPickerDropdownMenu>
       <FontFamilyPickerDropdownMenu
+        selectedObjectFontFamily={selectedFontFamily}
         onFontFamilyChange={changeSelectedTextFontFamily}
       >
         <Button variant={"outline"} disabled={textButtonsDisabled}>

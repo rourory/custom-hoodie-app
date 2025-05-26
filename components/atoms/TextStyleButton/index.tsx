@@ -17,7 +17,7 @@ const TextStyleButton: React.FC<TextStyleButtonProps> = ({
 }) => {
   return (
     <Button
-      className="grow relative bg-background"
+      className="grow relative bg-background "
       variant={"outline"}
       disabled={disabled}
       onClick={onClick}
@@ -27,10 +27,12 @@ const TextStyleButton: React.FC<TextStyleButtonProps> = ({
         width={24}
         height={24}
         alt={actionType}
+        className="dark:invert"
       />
-      {actived && (
-        <div className="absolute bottom-[4px] right-[4px] w-[8px] h-[8px] rounded-[50%] border-1 bg-foreground" />
-      )}
+      <div
+        className="absolute bottom-[4px] right-[4px] w-[8px] h-[8px] rounded-[50%] border-1 bg-foreground transition-all duration-150"
+        style={{ opacity: actived ? 1 : 0, scale: actived ? 1 : 0.3 }}
+      />
     </Button>
   );
 };

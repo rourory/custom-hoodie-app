@@ -208,6 +208,9 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
           changeSelectedTextDecoration={changeSelectedTextDecoration}
         />
         <AdvancedTextStyleButtonBlock
+          selectedFontFamily={
+            objects.find((obj) => obj.id === selectedObjectId)?.fontFamily
+          }
           textButtonsDisabled={textButtonsDisabled}
           changeSelectedTextColor={changeSelectedTextColor}
           changeSelectedTextFontFamily={changeSelectedTextFontFamily}

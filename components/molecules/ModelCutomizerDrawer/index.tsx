@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Drawer as SCNDrawer,
   DrawerContent,
@@ -10,17 +12,21 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import React from "react";
 import { Drawer } from "vaul";
 import HWComponentMountingDelayer from "../HighWeightComponentDelayer";
+import { useCanvasCustomizerStore } from "@/store/customizer";
 
-interface ModelCustomizerDrawerProps {
+interface IModelCustomizerDrawerProps {
   content: React.ReactNode;
-  onOpenChange: (open: boolean) => void;
 }
 
 const ModelCustomizerDrawer: React.FC<
-  React.PropsWithChildren & ModelCustomizerDrawerProps
-> = ({ content, children, onOpenChange }) => {
+  React.PropsWithChildren & IModelCustomizerDrawerProps
+> = ({ content, children }) => {
+  const { setSelectedObjectId } = useCanvasCustomizerStore();
+
   return (
-    <SCNDrawer onOpenChange={onOpenChange} handleOnly>
+    <SCNDrawer onOpenChange={(open) => {
+                if (!open) setSelectedObjectId(null, null);
+              }} handleOnly>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
       <DrawerContent>
         <Drawer.Handle className="-translate-x-[60vw]">

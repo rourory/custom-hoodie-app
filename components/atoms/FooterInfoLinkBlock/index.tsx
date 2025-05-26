@@ -14,7 +14,7 @@ export default function FooterInfoLinkBlock(props: FooterInfoLinkBlockProps) {
       <ul className="sm:pl-2 flex flex-col items-center sm:items-start">
         {props.blockElements.map((element) => (
           <li
-            className="text-sm mt-1 text-info transition-all duration-100 hover:scale-105"
+            className="text-sm mt-1 text-info transition-all duration-100 hover:brightness-150"
             key={element.title}
           >
             <Link href={element.href}>{element.title}</Link>

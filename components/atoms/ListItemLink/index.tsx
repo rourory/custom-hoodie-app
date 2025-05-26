@@ -26,6 +26,7 @@ const ListItemLink: React.FC<React.PropsWithChildren<IListItemLink>> = ({
             alt={title}
             width={18}
             height={18}
+            className="dark:invert"
           />
         )}
         {title}

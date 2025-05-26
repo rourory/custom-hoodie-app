@@ -17,7 +17,7 @@ const LockedState: React.FC<LockedStateProps> = ({
   return (
     <div
       className={cn(
-        "absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center backdrop-blur rounded-md",
+        "absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center backdrop-blur rounded-md z-20",
         className
       )}
     >

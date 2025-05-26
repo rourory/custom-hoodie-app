@@ -28,7 +28,13 @@ declare interface ITextStyleButtonBlock {
 declare interface IAdvancedTextStyleButtonBlock {
   textButtonsDisabled: boolean;
   selectedTextColor?: string;
+  selectedFontFamily?: string;
   changeSelectedTextColor: (color: string) => void;
   changeSelectedTextFontFamily: (fontFamily: string) => void;
   changeSelectedText: (text: string) => void;
+}
+
+declare interface IFontFamilyPickerDropdownMenu {
+  selectedObjectFontFamily?: string;
+  onFontFamilyChange: (fontFamily: string) => void;
 }
