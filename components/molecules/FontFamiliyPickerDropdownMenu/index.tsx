@@ -34,8 +34,10 @@ const FontFamilyPickerDropdownMenu: React.FC<
             <DropdownMenuItem
               key={fontFamily}
               onClick={() => onFontFamilyChange(fontFamily)}
+              style={{ fontFamily }}
             >
-              {fontFamily}
+              <div className="w-[5px] h-[5px] rounded-[50%] bg-foreground" />
+              <p>{fontFamily}</p>
             </DropdownMenuItem>
           ))}
         </DropdownMenuGroup>

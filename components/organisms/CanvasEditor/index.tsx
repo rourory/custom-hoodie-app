@@ -15,10 +15,8 @@ import ImageInput from "@/components/atoms/ImageInput";
 import FloatingDeleteButton from "@/components/atoms/DeleteButton";
 import CanvasText from "@/components/atoms/CanvasText";
 import TextInput from "@/components/molecules/TextInput";
-import ColorPickerDropdownMenu from "@/components/molecules/ColorPickerDropdownMenu";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import FontFamilyPickerDropdownMenu from "@/components/molecules/FontFamiliyPickerDropdownMenu";
+import TextStyleButtonBlock from "../TextStyleButtonBlock";
+import AdvancedTextStyleButtonBlock from "../AdvancedTextStyleButtonBlock";
 
 const CanvasEditor: React.FC<CanvasEditorProps> = ({
   uvUrl,
@@ -45,8 +43,11 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
     objects,
     addImage,
     addText,
+    changeSelectedText,
     changeSelectedTextColor,
     changeSelectedTextFontFamily,
+    changeSelectedTextDecoration,
+    changeSelectedTextStyle,
     deleteSelectedObject,
     updateObjectDimentions,
   } = useCanvasCustomizerStore();
@@ -101,6 +102,10 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
         console.log("Error while getting image from canvas:", error)
       );
   }, [stageRef, setImage, isCanvasReady]);
+
+  const textButtonsDisabled = React.useMemo(() => {
+    return !selectedObjectId || selectedObjectType !== "text";
+  }, [selectedObjectId, selectedObjectType]);
 
   React.useEffect(() => {
     updateImageTextureOnModel();
@@ -165,6 +170,8 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
                       scaleX: txt.scaleX,
                       scaleY: txt.scaleY,
                       color: txt.color,
+                      fontDecoration: txt.fontDecoration,
+                      fontStyle: txt.fontStyle,
                     }}
                     isSelected={selectedObjectId == txt.id}
                     onDragEnd={(e) => handleOnDragObjectEnd(e, txt)}
@@ -185,49 +192,33 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
         />
       </div>
       <div>
-        <div className="flex gap-2">
-          <ColorPickerDropdownMenu onChangeColor={changeSelectedTextColor}>
-            <Button
-              variant={"outline"}
-              disabled={!selectedObjectId || selectedObjectType !== "text"}
-              className="cursor-pointer relative overflow-clip"
-            >
-              <Image
-                src={"/icons/palette.svg"}
-                width={24}
-                height={24}
-                alt="change-text-color"
-                className="dark:invert"
-              />
-              <div
-                className="absolute bottom-0 left-0 w-full h-[12%]"
-                style={{
-                  backgroundColor:
-                    selectedObjectId && selectedObjectType === "text"
-                      ? objects.find((obj) => obj.id === selectedObjectId)
-                          ?.color
-                      : "",
-                }}
-              />
-            </Button>
-          </ColorPickerDropdownMenu>
-          <FontFamilyPickerDropdownMenu onFontFamilyChange={changeSelectedTextFontFamily}>
-            <Button
-              variant={"outline"}
-              disabled={!selectedObjectId || selectedObjectType !== "text"}
-            >
-              <Image
-                src={"/icons/type-outline.svg"}
-                width={24}
-                height={24}
-                alt="change-fint-family"
-                className="dark:invert"
-              />
-            </Button>
-          </FontFamilyPickerDropdownMenu>
-        </div>
+        <TextStyleButtonBlock
+          textButtonsDisabled={textButtonsDisabled}
+          isSelectedObjectIncludesStyle={(parameter) =>
+            objects
+              .find((obj) => obj.id === selectedObjectId)
+              ?.fontStyle?.includes(parameter) || false
+          }
+          isSelectedObjectIncludesDecoration={(parameter) =>
+            objects
+              .find((obj) => obj.id === selectedObjectId)
+              ?.fontDecoration?.includes(parameter) || false
+          }
+          changeSelectedTextStyle={changeSelectedTextStyle}
+          changeSelectedTextDecoration={changeSelectedTextDecoration}
+        />
+        <AdvancedTextStyleButtonBlock
+          textButtonsDisabled={textButtonsDisabled}
+          changeSelectedTextColor={changeSelectedTextColor}
+          changeSelectedTextFontFamily={changeSelectedTextFontFamily}
+          changeSelectedText={changeSelectedText}
+          selectedTextColor={
+            objects.find((obj) => obj.id === selectedObjectId)?.color
+          }
+        />
         <TextInput addText={addText} className="w-full mt-1" />
         <ImageInput addImage={addImage} className="w-full mt-1" />
+        {/* our images */}
       </div>
     </div>
   );

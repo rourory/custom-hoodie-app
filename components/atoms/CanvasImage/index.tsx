@@ -4,10 +4,10 @@ import {
   Transformer as KonvaTransformer,
 } from "react-konva";
 import { Transformer } from "konva/lib/shapes/Transformer";
+import { getTransformerVisualSettings } from "@/lib/component-visual-settings";
 
-const rotationSnapTolerance = 5;
-const rotationSnaps = [0, 45, 90, 135, 180, 225, 270, 315];
 const imageInitialHeight = 500;
+const transformerSettings = getTransformerVisualSettings();
 
 const CanvasImage: React.FC<CanvasImageProps> = ({
   img,
@@ -56,9 +56,8 @@ const CanvasImage: React.FC<CanvasImageProps> = ({
       />
       <KonvaTransformer
         ref={transformerRef}
-        rotationSnaps={rotationSnaps}
-        rotationSnapTolerance={rotationSnapTolerance}
         preventDefault
+        {...transformerSettings}
       />
     </>
   );

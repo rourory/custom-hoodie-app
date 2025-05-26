@@ -9,6 +9,9 @@ export interface CanvasCustomizerStoreState {
   addText: (text: string) => void;
   changeSelectedTextColor: (color: string) => void;
   changeSelectedTextFontFamily: (fontFamily: string) => void;
+  changeSelectedText: (text: string) => void;
+  changeSelectedTextStyle: (style: IFontStyleChange) => void;
+  changeSelectedTextDecoration: (decoration: IFontDecorationChange) => void;
   deleteSelectedObject: () => void;
   updateObjectDimentions: (
     id: number,
@@ -67,6 +70,8 @@ export const useCanvasCustomizerStore = create<CanvasCustomizerStoreState>()(
             fontSize: 160,
             type: "text",
             color: "black",
+            fontDecoration: "",
+            fontStyle: "",
           },
         ],
       });
@@ -86,6 +91,53 @@ export const useCanvasCustomizerStore = create<CanvasCustomizerStoreState>()(
         objects: getState().objects.map((object) => {
           if (object.id === getState().selectedObjectId) {
             return { ...object, fontFamily };
+          }
+          return object;
+        }),
+      });
+    },
+    changeSelectedText: (text) => {
+      set({
+        objects: getState().objects.map((object) => {
+          if (object.id === getState().selectedObjectId) {
+            return { ...object, text };
+          }
+          return object;
+        }),
+      });
+    },
+    changeSelectedTextDecoration: (decoration) => {
+      set({
+        objects: getState().objects.map((object) => {
+          if (object.id === getState().selectedObjectId) {
+            if (decoration.lineThrough) {
+              return { ...object, fontDecoration: "line-through" };
+            } else if (decoration.underline) {
+              return { ...object, fontDecoration: "underline" };
+            } else {
+              return { ...object, fontDecoration: "" };
+            }
+          }
+          return object;
+        }),
+      });
+    },
+    changeSelectedTextStyle: (style) => {
+      set({
+        objects: getState().objects.map((object) => {
+          if (object.id === getState().selectedObjectId) {
+            let fontStyle = "";
+            if (style.bold) {
+              fontStyle = object.fontStyle?.trim() + " bold";
+            } else if (style.bold === false) {
+              fontStyle = object.fontStyle?.replace("bold", "").trim() || "";
+            }
+            if (style.italic) {
+              fontStyle = object.fontStyle?.trim() + " italic";
+            } else if (style.italic === false) {
+              fontStyle = object.fontStyle?.replace("italic", "").trim() || "";
+            }
+            return { ...object, fontStyle: fontStyle };
           }
           return object;
         }),

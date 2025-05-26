@@ -1,6 +1,6 @@
 "use client";
 
-import AddTextDialog from "@/components/molecules/AddTextDialog";
+import ModifyTextDialog from "@/components/molecules/AddTextDialog";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -15,7 +15,12 @@ const TextInput: React.FC<TextInputProps & IComponentClassNameAsProp> = ({
   className,
 }) => {
   return (
-    <AddTextDialog addText={addText}>
+    <ModifyTextDialog
+      modifyText={addText}
+      buttonText="Добавить"
+      title="Добавить текст"
+      description="Введите текст, который хотите добавить на изделие"
+    >
       <Button
         id="add-text-button"
         className={cn("cursor-pointer", className)}
@@ -30,7 +35,7 @@ const TextInput: React.FC<TextInputProps & IComponentClassNameAsProp> = ({
         />
         Добавить текст
       </Button>
-    </AddTextDialog>
+    </ModifyTextDialog>
   );
 };
 

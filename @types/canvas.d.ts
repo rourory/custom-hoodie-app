@@ -22,6 +22,8 @@ declare interface CanvasAppText extends CanvasObject {
   fontSize?: number;
   fontFamily?: string;
   color?: string;
+  fontStyle?: string;
+  fontDecoration?: string;
 }
 
 declare interface DraggableCanvasObject extends CanvasAppText, CanvasAppImage {

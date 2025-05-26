@@ -34,8 +34,8 @@ export default function Home() {
           <div className="flex justify-center mt-7">
             <Link href={"/services"}>
               <Button
-                variant={"outline"}
-                className="text-md lg:text-xl font-medium w-[55vw]"
+                variant={"default"}
+                className="text-md lg:text-xl font-medium w-[55vw] max-w-[500px] cursor-pointer"
               >
                 Перейти к сервисам
               </Button>

@@ -1,9 +1,9 @@
 import React from "react";
 import { Text, Transformer as KonvaTransformer } from "react-konva";
 import { Transformer } from "konva/lib/shapes/Transformer";
+import { getTransformerVisualSettings } from "@/lib/component-visual-settings";
 
-const rotationSnapTolerance = 5;
-const rotationSnaps = [0, 45, 90, 135, 180, 225, 270, 315];
+const transformerSettings = getTransformerVisualSettings();
 
 const CanvasText: React.FC<CanvasTextProps> = ({
   text,
@@ -44,11 +44,12 @@ const CanvasText: React.FC<CanvasTextProps> = ({
         fontSize={text.fontSize}
         fontFamily={text.fontFamily}
         fill={text.color}
+        fontStyle={text.fontStyle}
+        textDecoration={text.fontDecoration}
       />
       <KonvaTransformer
         ref={transformerRef}
-        rotationSnaps={rotationSnaps}
-        rotationSnapTolerance={rotationSnapTolerance}
+        {...transformerSettings}
         preventDefault
       />
     </>

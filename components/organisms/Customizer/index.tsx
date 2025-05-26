@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Settings } from "lucide-react";
 
 import { useCanvasCustomizerStore } from "@/store/customizer";
+import ModelViewer from "../ModelViewer";
 
 const colors = [
   "red",
@@ -35,7 +36,7 @@ const colors = [
   "maroon",
 ];
 
-const Customizer: React.FC<ICustomizer> = ({
+const Customizer: React.FC<ICustomizerComponent> = ({
   modelProps,
   className,
   position = new Vector3(-1, 1, 3.5),
@@ -52,37 +53,21 @@ const Customizer: React.FC<ICustomizer> = ({
     >
       {modelProps.model ? (
         <>
-          <div className="bg-background hidden sm:block md:hidden lg:block w-[110px] shadow-md rounded-xl my-[10px] ml-[10px]">
+          {/* Vertical color picker on the left side of window */}
+          <div className="bg-background hidden sm:block md:hidden lg:block w-[110px] border-1 border-border rounded-xl my-[10px] ml-[10px]">
             <ScrollableColorPicker
               className="h-full w-full"
               colors={colors}
               orientation="vertical"
             />
           </div>
-          <Canvas
-            className="w-[500px] bg-background"
-            shadows
-            gl={{ preserveDrawingBuffer: true }}
-            eventPrefix="client"
-            camera={{ position, fov }}
-          >
-            <React.Suspense fallback={<ModelLoader />}>
-              <OrbitControls
-                minPolarAngle={degToRad(65)}
-                maxPolarAngle={degToRad(115)}
-                maxDistance={5}
-                minDistance={2}
-                enablePan={false}
-              />
-              <Environment preset="city" environmentIntensity={0.7} />
-              <Center>{modelProps.model}</Center>
-            </React.Suspense>
-          </Canvas>
+          {/* Model vierew on the center of window */}
+          <ModelViewer position={position} fov={fov} modelProps={modelProps} />
+          {/* Desktop editor */}
           <div
-            id="desktop-editor"
             className="bg-background md:min-w-[40vw] md:max-w-[40vw] lg:min-w-[30vw] lg:max-w-[30vw] hidden md:block"
           >
-            <div className="bg-background h-full md:h-[calc(100%-110px)] lg:h-[calc(100%-20px)] shadow-md rounded-xl mr-[5px] my-[10px]">
+            <div className="bg-background h-full md:h-[calc(100%-110px)] lg:h-[calc(100%-20px)] border-1 border-border rounded-xl mr-[5px] my-[10px]">
               <ScrollArea className="h-full w-full p-3">
                 <div className="flex flex-col items-center w-full h-full bg-background">
                   <CanvasEditor
@@ -93,12 +78,12 @@ const Customizer: React.FC<ICustomizer> = ({
                 </div>
               </ScrollArea>
             </div>
-            <div className="bg-background h-[80px] lg:hidden shadow-md rounded-xl my-[10px] mr-[10px]">
+            <div className="bg-background h-[80px] lg:hidden border-1 border-border rounded-xl my-[10px] mr-[5px]">
               <ScrollableColorPicker colors={colors} orientation="horizontal" />
             </div>
           </div>
+          {/* Mobile editor */}
           <div
-            id="mobile-editor"
             className="bg-background absolute top-0 right-0 block md:hidden"
           >
             <ModelCustomizerDrawer
@@ -118,7 +103,8 @@ const Customizer: React.FC<ICustomizer> = ({
               </Button>
             </ModelCustomizerDrawer>
           </div>
-          <div className="bg-background h-[80px] sm:hidden shadow-md rounded-xl mx-[10px] mb-[10px]">
+          {/* Horizontal color picker on the bottom of window */}
+          <div className="bg-background h-[80px] sm:hidden border-1 border-border rounded-xl mx-[10px] mb-[10px]">
             <ScrollableColorPicker colors={colors} orientation="horizontal" />
           </div>
         </>
