@@ -33,6 +33,7 @@ const CanvasText: React.FC<CanvasTextProps> = ({
         onDragEnd={onDragEnd}
         onTransformEnd={onTransformEnd}
         onMouseDown={onMouseDown}
+        onTap={onMouseDown}
         onMouseOut={onMouseOut}
         onMouseOver={onMouseOver}
         text={text.text}

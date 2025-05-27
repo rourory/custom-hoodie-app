@@ -134,6 +134,22 @@ exports.Prisma.ServicesScalarFieldEnum = {
   icon_url: 'icon_url'
 };
 
+exports.Prisma.Stock_categoriesScalarFieldEnum = {
+  id: 'id',
+  categoryName: 'categoryName',
+  description: 'description'
+};
+
+exports.Prisma.Stock_imagesScalarFieldEnum = {
+  id: 'id',
+  imageUrl: 'imageUrl',
+  compressedImageUrl: 'compressedImageUrl',
+  category: 'category',
+  price: 'price',
+  backgroundColor: 'backgroundColor',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -151,7 +167,9 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  services: 'services'
+  services: 'services',
+  stock_categories: 'stock_categories',
+  stock_images: 'stock_images'
 };
 
 /**

@@ -21,3 +21,21 @@ model services {
   is_available          Boolean
   icon_url              String? @db.VarChar(255)
 }
+
+model stock_categories {
+  id           Int            @id @default(autoincrement())
+  categoryName String         @db.VarChar(255)
+  description  String?        @db.VarChar(255)
+  stock_images stock_images[]
+}
+
+model stock_images {
+  id                 Int           @id @default(autoincrement())
+  imageUrl           String           @db.VarChar(255)
+  compressedImageUrl String           @db.VarChar(255)
+  category           Int              @db.SmallInt
+  price              Decimal          @db.Decimal(10, 2)
+  stock_categories   stock_categories @relation(fields: [category], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_stock_images_stock_categories")
+  backgroundColor    String          @db.VarChar(255)
+  createdAt          DateTime        @default(now())
+}

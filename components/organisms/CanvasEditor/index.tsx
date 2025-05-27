@@ -17,6 +17,7 @@ import CanvasText from "@/components/atoms/CanvasText";
 import TextInput from "@/components/molecules/TextInput";
 import TextStyleButtonBlock from "../TextStyleButtonBlock";
 import AdvancedTextStyleButtonBlock from "../AdvancedTextStyleButtonBlock";
+import StockImages from "../StockImages";
 
 const CanvasEditor: React.FC<CanvasEditorProps> = ({
   uvUrl,
@@ -222,6 +223,7 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
         <TextInput addText={addText} className="w-full mt-1" />
         <ImageInput addImage={addImage} className="w-full mt-1" />
         {/* our images */}
+        <StockImages onAddImage={addImage}/>
       </div>
     </div>
   );
