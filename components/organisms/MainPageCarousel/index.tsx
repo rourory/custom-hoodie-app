@@ -97,7 +97,7 @@ const MainPageCarousel = () => {
                 <Card className="border-0 shadow-none bg-background">
                   <CardContent className="h-full flex aspect-[2/1.4] items-center justify-center p-0 overflow-clip rounded-2xl">
                     <Image
-                      className={`object-center h-full object-cover &{image.loading && "hidden"}`}
+                      className={`object-center h-full object-cover`}
                       src={image.src}
                       alt={image.alt}
                       width={image.loading ? 0 : 1024}

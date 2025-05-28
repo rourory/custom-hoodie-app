@@ -14,7 +14,7 @@ export default function Home() {
           <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold text-center text-header">
             Printique
           </h1>
-          <div className="lg:h-[60vh] mt-2 md:mt-5">
+          <div className="lg:h-[54vh] mt-2 md:mt-5">
             <Image
               className="rounded-lg h-[100%] object-contain"
               src={"/images/3.webp"}
@@ -48,7 +48,7 @@ export default function Home() {
             title="Используй современные технологии"
             text="Все, что нужно для вашего собственного изделия - это воспользоваться удобным веб-интерфесом, созданным специально для вас."
           />
-          <div className="lg:h-[60vh] mt-5 md:mt-10">
+          <div className="lg:h-[54vh] mt-5 md:mt-10">
             <Image
               className="rounded-lg h-[100%] object-contain"
               src={"/images/5.webp"}

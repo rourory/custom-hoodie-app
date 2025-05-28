@@ -5,7 +5,6 @@ import React from "react";
 import { PERIODS, plus } from "datetime-utility";
 
 interface IStockImage extends IComponentClassNameAsProp {
-  imageUrl: string;
   compressedImageUrl: string;
   backgroundColor: string;
   price: string | number;
@@ -14,7 +13,6 @@ interface IStockImage extends IComponentClassNameAsProp {
 
 const StockImage: React.FC<IStockImage> = ({
   className,
-  imageUrl,
   compressedImageUrl,
   backgroundColor,
   price,
@@ -37,6 +35,8 @@ const StockImage: React.FC<IStockImage> = ({
         alt={compressedImageUrl}
         width={40}
         height={40}
+        draggable={false}
+        onContextMenu={(e) => e.preventDefault()}
         className="object-contain"
       />
       <Badge

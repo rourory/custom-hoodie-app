@@ -6,9 +6,10 @@ import { stock_images } from "@/generated/prisma";
 import { Clients } from "@/services/base/clients";
 import { ChevronsUpDown } from "lucide-react";
 import React from "react";
+import AddImageDialog from "../AddImageDialog";
 
 interface IStockImages {
-  onAddImage: (image: File | undefined) => void;
+  onAddImage: (image: File | Blob | undefined) => void;
 }
 
 const StockImages: React.FC<IStockImages> = ({ onAddImage }) => {
@@ -36,17 +37,22 @@ const StockImages: React.FC<IStockImages> = ({ onAddImage }) => {
         </Button>
       </StockCategoryCombobox>
       <ScrollArea className="w-full h-full border-t-1 border-border">
-        <div className="w-full h-full grid grid-cols-3 justify-items-center mb-30">
+        <div className="w-full h-full grid grid-cols-3 sm:grid-cols-5 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 justify-items-center mb-30 px-2">
           {images.map((img) => (
-            <StockImage
-              className="col-span-1 mt-2"
-              key={img.id}
+            <AddImageDialog
               imageUrl={img.imageUrl}
-              compressedImageUrl={img.compressedImageUrl}
-              backgroundColor={img.backgroundColor}
-              createdAt={img.createdAt}
-              price={img.price.valueOf()}
-            />
+              key={img.id}
+              onAddImage={onAddImage}
+            >
+              <div className="col-span-1 mt-2">
+                <StockImage
+                  compressedImageUrl={img.compressedImageUrl}
+                  backgroundColor={img.backgroundColor}
+                  createdAt={img.createdAt}
+                  price={img.price.valueOf()}
+                />
+              </div>
+            </AddImageDialog>
           ))}
         </div>
       </ScrollArea>

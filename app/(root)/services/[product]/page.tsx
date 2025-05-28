@@ -1,4 +1,5 @@
 import Sweatshot from "@/components/models/Sweatshot";
+import Mug from "@/components/models/Mug";
 import Customizer from "@/components/organisms/Customizer";
 import { prisma } from "@/prisma/prisma-clent";
 import { notFound } from "next/navigation";
@@ -27,10 +28,15 @@ export default async function Product({
   }
 
   let model: React.ReactNode | undefined;
-
-  switch (serviceName) {
+  
+  switch (service.service_name) {
     case "sweatshot": {
       model = <Sweatshot />;
+      break;
+    }
+    case "mug": {
+      model = <Mug />;
+      break;
     }
   }
 

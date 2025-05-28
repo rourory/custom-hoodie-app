@@ -125,11 +125,11 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
       >
         <KonvaStage
           style={{
-            //@ts-ignore
-            "--bg-image-url": `url(${uvUrl})`,
+            background: `url(${uvUrl})`,
+            backgroundSize: "cover",
             cursor,
           }}
-          className={`bg-[image:var(--bg-image-url)] bg-cover overflow-clip rounded-md absolute top-0 left-0`}
+          className={`overflow-clip rounded-md absolute top-0 left-0`}
           width={stageSize.width}
           height={stageSize.height}
           scaleX={stageSize.scale}
@@ -222,8 +222,7 @@ const CanvasEditor: React.FC<CanvasEditorProps> = ({
         />
         <TextInput addText={addText} className="w-full mt-1" />
         <ImageInput addImage={addImage} className="w-full mt-1" />
-        {/* our images */}
-        <StockImages onAddImage={addImage}/>
+        <StockImages onAddImage={addImage} />
       </div>
     </div>
   );

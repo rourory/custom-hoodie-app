@@ -5,7 +5,7 @@ export interface CanvasCustomizerStoreState {
   selectedObjectType: string | null;
   setSelectedObjectId: (id: number | null, type: string | null) => void;
   objects: Array<DraggableCanvasObject>;
-  addImage: (file: File | undefined) => void;
+  addImage: (file: File | Blob | undefined) => void;
   addText: (text: string) => void;
   changeSelectedTextColor: (color: string) => void;
   changeSelectedTextFontFamily: (fontFamily: string) => void;
@@ -21,6 +21,7 @@ export interface CanvasCustomizerStoreState {
     scaleY: number,
     rotation: number
   ) => void;
+  clearSettings: () => void;
 }
 
 export const useCanvasCustomizerStore = create<CanvasCustomizerStoreState>()(
@@ -160,6 +161,7 @@ export const useCanvasCustomizerStore = create<CanvasCustomizerStoreState>()(
         }),
       });
     },
+    clearSettings: () => set({ objects: [] }),
   })
 );
 

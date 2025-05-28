@@ -19,11 +19,11 @@ const mockServices: services[] = [
   },
   {
     id: 1,
-    service_name: "cup",
-    uv_url: "/models/cup_background.webp",
+    service_name: "mug",
+    uv_url: "/models/mug-background.png",
     texture_aspect_width: 1,
     texture_aspect_height: 1,
-    model_url: "/models/cup.glb",
+    model_url: "/models/mug.glb",
     image_url: "/carousel/cup-carousel.webp",
     description:
       "Разнообразьте предмет обихода яркими логотипами собственного дизайна",
