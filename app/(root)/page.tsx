@@ -20,7 +20,6 @@ export default function Home() {
               src={"/images/3.webp"}
               width={1920}
               height={1080}
-              priority
               alt={"main-page-intro"}
             />
           </div>
@@ -54,7 +53,6 @@ export default function Home() {
               src={"/images/5.webp"}
               width={1920}
               height={1080}
-              priority
               alt={"main-page-intro"}
             />
           </div>
