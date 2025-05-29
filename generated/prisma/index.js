@@ -155,7 +155,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\Projects\\VSProjects\\Printique\\printique-app\\generated\\prisma",
+      "value": "C:\\Users\\Admin\\Documents\\Projects\\printique-app\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -169,7 +169,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\Projects\\VSProjects\\Printique\\printique-app\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\Admin\\Documents\\Projects\\printique-app\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
