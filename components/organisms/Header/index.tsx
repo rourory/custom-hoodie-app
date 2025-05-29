@@ -2,12 +2,13 @@ import React from "react";
 import Container from "../Container";
 import { Button } from "@/components/ui/button";
 import NavigationBarLinks from "@/components/molecules/NavigationBarLinks";
-import { ShoppingCart } from "lucide-react";
+import { LogIn, ShoppingCart } from "lucide-react";
 import { Menu } from "lucide-react";
 import NavigationBarDrawer from "@/components/molecules/NavigationBarDrawer";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/atoms/Logo";
 import { prisma } from "@/prisma/prisma-clent";
+import ChangeThemeButton from "@/components/atoms/ChangeThemeButton";
 
 const Header: React.FC<IComponentClassNameAsProp> = async ({ className }) => {
   const services = await prisma.services.findMany();
@@ -37,11 +38,13 @@ const Header: React.FC<IComponentClassNameAsProp> = async ({ className }) => {
             </div>
             <div className="account flex gap-2.5 min-w-[130px]">
               <Button variant="outline" className="text-[13px]">
-                Войти
+                <p className="hidden sm:block">Войти</p>
+                <LogIn/>
               </Button>
               <Button className="bg-primary">
                 <ShoppingCart />
               </Button>
+              <ChangeThemeButton />
             </div>
           </div>
         </Container>
