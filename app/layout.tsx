@@ -12,8 +12,9 @@ const comfortaaFont = Comfortaa({
 });
 
 export const metadata: Metadata = {
-  title: "Printique",
-  description: "Футболка, кружка, худи или свитшот со своим дизайном",
+  title: "Printique application. Create your own design",
+  description:
+    "Футболка, кружка, худи или свитшот со своим дизайном. Приложение Printique. Создай свой дизайн. Печать на футболках, кружках, худи и другиз изделий из трикотажа",
 };
 
 export default function RootLayout({
