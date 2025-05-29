@@ -100,8 +100,8 @@ const MainPageCarousel = () => {
                       className={`object-center h-full object-cover`}
                       src={image.src}
                       alt={image.alt}
-                      width={image.loading ? 0 : 1024}
-                      height={753}
+                      width={image.loading ? 0 : 450}
+                      height={322}
                       onLoad={() => onImageLoad(image.src)}
                     />
                     <Skeleton

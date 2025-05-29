@@ -18,8 +18,8 @@ export default function Home() {
             <Image
               className="rounded-lg h-[100%] object-contain"
               src={"/images/3.webp"}
-              width={1920}
-              height={1080}
+              width={1280}
+              height={720}
               alt={"main-page-intro"}
             />
           </div>
@@ -51,8 +51,8 @@ export default function Home() {
             <Image
               className="rounded-lg h-[100%] object-contain"
               src={"/images/5.webp"}
-              width={1920}
-              height={1080}
+              width={1280}
+              height={720}
               alt={"main-page-intro"}
             />
           </div>

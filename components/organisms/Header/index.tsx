@@ -26,7 +26,12 @@ const Header: React.FC<IComponentClassNameAsProp> = async ({ className }) => {
             {/* Mobile only */}
             <div className="md:hidden flex justify-items-start">
               <NavigationBarDrawer services={services}>
-                <Button variant={"outline"} className="bg-background">
+                <Button
+                  aria-label="Открыть навигационное меню"
+                  title="Меню"
+                  variant={"outline"}
+                  className="bg-background"
+                >
                   <Menu />
                 </Button>
               </NavigationBarDrawer>
@@ -37,11 +42,20 @@ const Header: React.FC<IComponentClassNameAsProp> = async ({ className }) => {
               <NavigationBarLinks services={services} />
             </div>
             <div className="account flex gap-2.5 min-w-[130px]">
-              <Button variant="outline" className="text-[13px]">
+              <Button
+                aria-label="Войти в аккаунт или зарегестрироваться"
+                title="Аккаунт"
+                variant="outline"
+                className="text-[13px]"
+              >
                 <p className="hidden sm:block">Войти</p>
-                <LogIn/>
+                <LogIn />
               </Button>
-              <Button className="bg-primary">
+              <Button
+                aria-label="Перейти в корзину"
+                title="Корзина"
+                className="bg-primary"
+              >
                 <ShoppingCart />
               </Button>
               <ChangeThemeButton />

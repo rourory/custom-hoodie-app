@@ -42,6 +42,7 @@ const NavigationBarDrawer: React.FC<
                     />
                   )}
                   <ListItemLink
+                    aria-label={`Перейти к разделу ${el.title}`}
                     href={`services/${el.service_name}`}
                     title={el.title}
                     className="block hover:scale-100"
@@ -55,6 +56,7 @@ const NavigationBarDrawer: React.FC<
               {extraInfoComponents.map((el) => (
                 <li key={el.title} className="mt-4">
                   <ListItemLink
+                    aria-label={`Перейти к разделу ${el.title}`}
                     key={el.title}
                     href={el.href}
                     title={el.title}
